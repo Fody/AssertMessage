@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>AssertMessage.Fody</id>
+    <version>$version$</version>
+    <title>AssertMessage.Fody</title>
+    <authors>Rafał Jasica</authors>
+    <owners>Rafał Jasica</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://github.com/Fody/AssertMessage</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://raw.github.com/Fody/AssertMessage/master/Icons/package_icon.png</iconUrl>
+    <description>Adds 'message' parameter to Assertions. It is generated from source code. Nunit, Mstest, Xunit is supported.</description>
+    <language>en-UK</language>
+    <tags>Assert, message, Fody, Cecil, Nunit, Xunit, mstest</tags>
+    <dependencies>
+      <dependency id="Fody"/>
+    </dependencies>
+  </metadata>
+</package>
