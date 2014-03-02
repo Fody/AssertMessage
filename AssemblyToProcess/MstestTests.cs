@@ -23,7 +23,7 @@ namespace AssemblyToProcess
 
         public void StringContains_should_have_message()
         {
-            string actual = "badstring";
+            var actual = "badstring";
 
             StringAssert.Contains("test", actual);
         }

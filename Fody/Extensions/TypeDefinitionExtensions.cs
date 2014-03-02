@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AssertMessage.Fody.Extensions;
+﻿using System.Linq;
 using Mono.Cecil;
 
 namespace AssertMessage.Fody.Extensions

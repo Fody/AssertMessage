@@ -1,9 +1,5 @@
-﻿
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AssemblyToProcess
 {
@@ -11,7 +7,7 @@ namespace AssemblyToProcess
     {
         public void StringContains_should_have_message()
         {
-            string actual = "badstring";
+            var actual = "badstring";
 
             StringAssert.Contains("test", actual);
         }

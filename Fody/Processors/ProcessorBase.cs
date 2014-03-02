@@ -1,9 +1,6 @@
 ﻿using Mono.Cecil;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AssertMessage.Fody.Extensions;
 
 namespace AssertMessage.Fody.Processors
@@ -21,11 +18,10 @@ namespace AssertMessage.Fody.Processors
                 && !HasMessage(methodReference);
         }
 
-        public virtual MethodReference GetAssertionMethodWithMessssage(MethodReference methodReference)
+        public virtual MethodReference GetAssertionMethodWithMessage(MethodReference methodReference)
         {
             var parameters = methodReference.Parameters;
-            var newParameters = new List<string>(parameters.Select(x => x.ParameterType.IsGenericParameter ? "T" : x.ParameterType.Name));
-            newParameters.Add("String");
+            var newParameters = new List<string>(parameters.Select(x => x.ParameterType.IsGenericParameter ? "T" : x.ParameterType.Name)) {"String"};
 
             var newMethod = methodReference.DeclaringType.Resolve().FindMethod(methodReference.Name, newParameters.ToArray());
             if (newMethod == null)

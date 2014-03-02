@@ -24,9 +24,9 @@ namespace AssertMessage.Fody
         public ModuleWeaver()
         {
             var sourceCodeProvider = new SourceCodeProvider();
-            this.sequencePointExtrator = new SequencePointExtrator(sourceCodeProvider);
-            this.processors = new List<IProcessor>();
-            this.allProcessors = this.GetType()
+            sequencePointExtrator = new SequencePointExtrator(sourceCodeProvider);
+            processors = new List<IProcessor>();
+            allProcessors = GetType()
                 .Assembly
                 .GetTypes()
                 .Where(x => typeof(IProcessor).IsAssignableFrom(x) && !x.IsAbstract)
@@ -36,21 +36,21 @@ namespace AssertMessage.Fody
 
         public void Execute()
         {
-            this.SelectActiveProcessors();
+            SelectActiveProcessors();
 
-            this.AnalyzeTypes();
+            AnalyzeTypes();
 
-            this.RemoveReference();
+            RemoveReference();
         }
 
         private void SelectActiveProcessors()
         {
-            this.processors = this.allProcessors.Where(x => x.IsValidForModule(this.ModuleDefinition)).ToList();
+            processors = allProcessors.Where(x => x.IsValidForModule(ModuleDefinition)).ToList();
         }
 
         private void AnalyzeTypes()
         {
-            if (this.processors.Count == 0)
+            if (processors.Count == 0)
             {
                 return;
             }
@@ -98,7 +98,7 @@ namespace AssertMessage.Fody
                     var processor = processors.Where(x => x.IsValidForMethod(methodReference)).FirstOrDefault();
                     if (processor != null)
                     {
-                        var newMethod = processor.GetAssertionMethodWithMessssage(methodReference);
+                        var newMethod = processor.GetAssertionMethodWithMessage(methodReference);
                         if (newMethod != null)
                         {
                             var newInstruction = GenerateNewCode(index, lastSequencePoint, ins, newMethod);

@@ -11,7 +11,7 @@ namespace Tests
 
         public IntegrationTestsBase()
         {
-            var testType = this.GetType().FullName.Replace("Tests.", "AssemblyToProcess.");
+            var testType = GetType().FullName.Replace("Tests.", "AssemblyToProcess.");
             type = AssemblyLoader.Assembly.GetType(testType);
         }
 
