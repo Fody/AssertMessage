@@ -55,7 +55,7 @@ namespace AssemblyToProcess
         public void Contains_should_have_message()
         {
             var expected = new object();
-            var collection = new object[] { new Object(), new Object() };
+            var collection = new[] { new Object(), new Object() };
 
             Assert.Contains(expected, collection);
         }
@@ -76,7 +76,7 @@ namespace AssemblyToProcess
 
         public void IsEmpty_should_have_message_for_collection()
         {
-            var actual = new object[]{new object()};
+            var actual = new[]{new object()};
 
             Assert.IsEmpty(actual);
         }

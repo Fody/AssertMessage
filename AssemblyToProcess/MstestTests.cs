@@ -63,7 +63,7 @@ namespace AssemblyToProcess
         public void Contains_should_have_message()
         {
             var expected = new object();
-            var collection = new object[] { new Object(), new Object() };
+            var collection = new[] { new Object(), new Object() };
 
             CollectionAssert.Contains(collection, expected);
         }

@@ -95,7 +95,7 @@ namespace AssertMessage.Fody
                 var methodReference = ins.Operand as MethodReference;
                 if (IsValidInstruction(ins, methodReference))
                 {
-                    var processor = processors.Where(x => x.IsValidForMethod(methodReference)).FirstOrDefault();
+                    var processor = processors.FirstOrDefault(x => x.IsValidForMethod(methodReference));
                     if (processor != null)
                     {
                         var newMethod = processor.GetAssertionMethodWithMessage(methodReference);
