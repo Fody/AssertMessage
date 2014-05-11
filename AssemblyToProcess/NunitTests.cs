@@ -12,12 +12,12 @@ namespace AssemblyToProcess
             StringAssert.Contains("test", actual);
         }
 
-        public void AreEqual_should_have_message_orginal_formated_message()
+        public void AreEqual_should_have_message_original_formated_message()
         {
             var expected = 1;
             var actual = 2;
 
-            Assert.AreEqual(expected, actual, "{0}_{1}", "orginal", "message");
+            Assert.AreEqual(expected, actual, "{0}_{1}", "original", "message");
         }
 
         public void AreEqual_should_have_message_for_int()
@@ -36,12 +36,12 @@ namespace AssemblyToProcess
             Assert.AreEqual(expected, actual);
         }
 
-        public void AreEqual_should_have_message_orginal_message()
+        public void AreEqual_should_have_message_original_message()
         {
             var expected = 1;
             var actual = 2;
 
-            Assert.AreEqual(expected, actual, "orginal_message");
+            Assert.AreEqual(expected, actual, "original_message");
         }
         
         public void AreNotEqual_should_have_message()

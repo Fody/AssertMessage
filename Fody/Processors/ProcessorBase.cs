@@ -46,10 +46,7 @@ namespace AssertMessage.Fody.Processors
             {
                 return false;
             }
-            else
-            {
-                return true;
-            }
+            return true;
         }
 
         protected virtual bool HasMessage(MethodReference methodReference)

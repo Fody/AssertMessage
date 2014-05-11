@@ -13,11 +13,11 @@ namespace Tests
         }
 
         [Test]
-        public void AreEqual_should_have_message_orginal_formated_message()
+        public void AreEqual_should_have_message_original_formated_message()
         {
             CheckIfMessageIsValid(message =>
             {
-                NUnit.Framework.StringAssert.Contains("orginal_message", message);
+                NUnit.Framework.StringAssert.Contains("original_message", message);
                 NUnit.Framework.StringAssert.DoesNotContain("Assert.AreEqual(", message);
             });       
         }
@@ -41,11 +41,11 @@ namespace Tests
         }
 
         [Test]
-        public void AreEqual_should_have_message_orginal_message()
+        public void AreEqual_should_have_message_original_message()
         {
             CheckIfMessageIsValid(message =>
             {
-                NUnit.Framework.StringAssert.Contains("orginal_message", message);
+                NUnit.Framework.StringAssert.Contains("original_message", message);
                 NUnit.Framework.StringAssert.DoesNotContain("Assert.AreEqual(", message);
             });       
         }

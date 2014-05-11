@@ -30,21 +30,21 @@ namespace Tests
         }
 
         [Test]
-        public void AreEqual_should_have_message_orginal_message()
+        public void AreEqual_should_have_message_original_message()
         {
             CheckIfMessageIsValid(message =>
             {
-                StringAssert.Contains("orginal_message", message);
+                StringAssert.Contains("original_message", message);
                 StringAssert.DoesNotContain("Assert.AreEqual(", message);
             });            
         }
 
         [Test]
-        public void AreEqual_should_have_message_orginal_formated_message()
+        public void AreEqual_should_have_message_original_formated_message()
         {
             CheckIfMessageIsValid(message =>
             {
-                StringAssert.Contains("orginal_message", message);
+                StringAssert.Contains("original_message", message);
                 StringAssert.DoesNotContain("Assert.AreEqual(", message);
             });
         }
