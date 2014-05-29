@@ -1,6 +1,6 @@
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
-![Icon](https://raw.github.com/Fody/AssertMessage/master/Icons/package_icon.png)
+![Icon](https://raw.githubusercontent.com/Fody/AssertMessage/master/Icons/package_icon.png)
 
 Adds 'message' parameter to Assertions. It is generated from source code.
 
