@@ -11,14 +11,12 @@ Supported frameworks:
 
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage).
 
-## Nuget 
+## The nuget package  [![NuGet Status](http://img.shields.io/nuget/v/AssertMessage.Fody.svg?style=flat)](https://www.nuget.org/packages/AssertMessage.Fody/)
 
-Nuget package http://nuget.org/packages/AssertMessage.Fody/
+https://nuget.org/packages/AssertMessage.Fody/
 
-To Install from the Nuget Package Manager Console 
-    
     PM> Install-Package AssertMessage.Fody
-    
+
 ## Your Code
 
     public void CustomerTest()
