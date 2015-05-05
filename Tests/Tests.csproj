@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyLoader.cs" />
+    <Compile Include="DebugTests.cs" />
     <Compile Include="XunitTests.cs" />
     <Compile Include="MstestTests.cs" />
     <Compile Include="IntegrationTestsBase.cs" />
