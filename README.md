@@ -37,6 +37,10 @@ https://nuget.org/packages/AssertMessage.Fody/
         Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money, "Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money);");
     }
 
+## Pdb files
+
+The Pbd files are required for this plugin. To make it work in Release, please enable Debug Info(pdbonly) in Advanced Build Settings Dialog Box. [More info](https://msdn.microsoft.com/en-us/library/s4wcexbc.aspx)
+
 ## Icon
 
 Message by Prerak Patel from [The Noun Project](http://thenounproject.com)
