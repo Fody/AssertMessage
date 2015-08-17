@@ -1,4 +1,6 @@
-﻿using AssertMessage.Fody.Processors;
+﻿using System.ComponentModel;
+
+using AssertMessage.Fody.Processors;
 using AssertMessage.Fody.SourceCode;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
@@ -59,7 +61,11 @@ namespace AssertMessage.Fody
             {
                 try
                 {
-                    AnalyzeMethod(method);
+                    AnalyzeMethod( method );
+                }
+                catch( WeavingException )
+                {
+                    throw;
                 }
                 catch (Exception ex)
                 {

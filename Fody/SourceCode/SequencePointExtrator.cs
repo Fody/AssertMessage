@@ -1,4 +1,6 @@
-﻿using Mono.Cecil.Cil;
+﻿using System;
+
+using Mono.Cecil.Cil;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +17,16 @@ namespace AssertMessage.Fody.SourceCode
 
         public string GetSourceCode(SequencePoint sequencePoint)
         {
-            var lines = sourceCodeProvider.GetSourceCode(sequencePoint.Document.Url);
+            string[] lines;
+            try
+            {
+                lines = sourceCodeProvider.GetSourceCode(sequencePoint.Document.Url);
+            }
+            catch( Exception )
+            {
+                throw new WeavingException( "Can not find sourcecode. Please make sure that generating PDB is enabled." );
+            }
+
             if (lines == null)
             {
                 return null;
