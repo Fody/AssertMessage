@@ -71,6 +71,7 @@
     <Compile Include="InstructionToInsert.cs" />
     <Compile Include="ModuleWeaver.cs" />
     <Compile Include="..\CommonAssemblyInfo.cs" />
+    <Compile Include="Processors\DebugProcessor.cs" />
     <Compile Include="Processors\XunitProcessor.cs" />
     <Compile Include="Processors\MstestProcessor.cs" />
     <Compile Include="Processors\IProcessor.cs" />

@@ -49,6 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DebugTests.cs" />
     <Compile Include="NunitTests.cs">
       <SubType>Code</SubType>
     </Compile>
