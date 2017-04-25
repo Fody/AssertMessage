@@ -19,6 +19,8 @@ namespace Tests
             var pbdBeforeAssemblyPath = beforeAssemblyPath.Replace(".dll", ".pdb");
             File.Copy(beforeAssemblyPath, afterAssemblyPath, true);
             File.Copy(pbdBeforeAssemblyPath, pbdAfterAssemblyPath, true);
+            var weavedAssemblyPath = beforeAssemblyPath.Replace(".dll", "3.dll");
+            var weavedAfterAssemblyPath = beforeAssemblyPath.Replace(".dll", "3.pdb");
 
             var moduleDefinition = ModuleDefinition.ReadModule(afterAssemblyPath, new ReaderParameters
             {
@@ -30,9 +32,9 @@ namespace Tests
             };
 
             weavingTask.Execute();
-            moduleDefinition.Write(afterAssemblyPath);
+            moduleDefinition.Write(weavedAssemblyPath);
 
-            Assembly = Assembly.LoadFile(afterAssemblyPath);
+            Assembly = Assembly.LoadFile(weavedAssemblyPath);
         }
 
         public static Assembly Assembly { get; private set; }

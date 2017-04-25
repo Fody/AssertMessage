@@ -80,7 +80,7 @@ namespace AssertMessage.Fody
             {
                 var instructions = method.Body.Instructions;
 
-                var toInsert = GetInstructionsToInsert(instructions);
+                var toInsert = GetInstructionsToInsert(instructions, method);
 
                 foreach (var instruction in toInsert)
                 {
@@ -89,14 +89,15 @@ namespace AssertMessage.Fody
             }
         }
 
-        private IList<InstructionToInsert> GetInstructionsToInsert(ICollection<Instruction> instructions)
+        private IList<InstructionToInsert> GetInstructionsToInsert(ICollection<Instruction> instructions, MethodDefinition method)
         {
             var index = 0;
             var toAdd = new List<InstructionToInsert>();
             SequencePoint lastSequencePoint = null;
+            
             foreach (var ins in instructions)
             {
-                lastSequencePoint = ins.SequencePoint ?? lastSequencePoint;
+                lastSequencePoint = method.DebugInformation.GetSequencePoint(ins) ?? lastSequencePoint;
 
                 var methodReference = ins.Operand as MethodReference;
                 if (IsValidInstruction(ins, methodReference))
