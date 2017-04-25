@@ -15,7 +15,7 @@
     <language>en-UK</language>
     <tags>Assert, message, Fody, Cecil, Nunit, Xunit, mstest</tags>
     <dependencies>
-      <dependency id="Fody"/>
+      <dependency id="Fody" version="2.0.0"/>
     </dependencies>
   </metadata>
 </package>
