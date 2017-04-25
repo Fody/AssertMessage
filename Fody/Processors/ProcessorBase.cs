@@ -26,6 +26,12 @@ namespace AssertMessage.Fody.Processors
             var newMethod = methodReference.DeclaringType.Resolve().FindMethod(methodReference.Name, newParameters.ToArray());
             if (newMethod == null)
             {
+                newParameters = new List<string>(parameters.Select(x => x.ParameterType.IsGenericParameter ? "T" : x.ParameterType.Name)) { "String", "Object[]" };
+                newMethod = methodReference.DeclaringType.Resolve().FindMethod(methodReference.Name, newParameters.ToArray());
+            }
+
+            if (newMethod == null)
+            {
                 return null;
             }
 

@@ -9,7 +9,8 @@ namespace Tests
     {
         static AssemblyLoader()
         {
-            var beforeAssemblyPath = Path.GetFullPath(@"..\..\..\AssemblyToProcess\bin\Debug\AssemblyToProcess.dll");
+            var basePath =  Path.GetDirectoryName(typeof (AssemblyLoader).Assembly.Location);
+            var beforeAssemblyPath = Path.GetFullPath(basePath + @"\..\..\..\AssemblyToProcess\bin\Debug\AssemblyToProcess.dll");
 #if (!DEBUG)
 
         beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");
@@ -22,9 +23,14 @@ namespace Tests
             var weavedAssemblyPath = beforeAssemblyPath.Replace(".dll", "3.dll");
             var weavedAfterAssemblyPath = beforeAssemblyPath.Replace(".dll", "3.pdb");
 
+            var assemblyResolver = new MockAssemblyResolver
+            {
+                Directory = Path.GetDirectoryName(beforeAssemblyPath)
+            };
             var moduleDefinition = ModuleDefinition.ReadModule(afterAssemblyPath, new ReaderParameters
             {
                 ReadSymbols = true,
+                AssemblyResolver = assemblyResolver
             });
             var weavingTask = new ModuleWeaver
             {

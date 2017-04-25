@@ -109,9 +109,14 @@ namespace AssertMessage.Fody
                         if (newMethod != null)
                         {
                             var newInstruction = GenerateNewCode(index, lastSequencePoint, ins, newMethod);
-
                             toAdd.Add(newInstruction);
                             index++;
+                            var lastType = newMethod.Parameters.Last().ParameterType;
+                            if (lastType.FullName == "System.Object[]")
+                            {
+                                toAdd.Add(new InstructionToInsert(index, Instruction.Create(OpCodes.Ldnull)));
+                                index++;
+                            }
                         }
                     }
                 }
