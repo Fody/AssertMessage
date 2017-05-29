@@ -1,3 +1,6 @@
+[![Chat on Gitter Status](https://img.shields.io/gitter/room/fody/fody.svg?style=flat)](https://gitter.im/Fody)
+[![NuGet Status](http://img.shields.io/nuget/v/AssertMessage.Fody.svg?style=flat)](https://www.nuget.org/packages/AssertMessage.Fody/)
+
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
 ![Icon](https://raw.githubusercontent.com/Fody/AssertMessage/master/Icons/package_icon.png)
@@ -11,11 +14,13 @@ Supported frameworks:
 
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage).
 
-## The nuget package  [![NuGet Status](http://img.shields.io/nuget/v/AssertMessage.Fody.svg?style=flat)](https://www.nuget.org/packages/AssertMessage.Fody/)
+
+## The nuget package
 
 https://nuget.org/packages/AssertMessage.Fody/
 
     PM> Install-Package AssertMessage.Fody
+
 
 ## Your Code
 
@@ -27,6 +32,7 @@ https://nuget.org/packages/AssertMessage.Fody/
         Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money);
     }
 
+
 ## What gets compiled
 
     public void CustomerTest()
@@ -37,9 +43,11 @@ https://nuget.org/packages/AssertMessage.Fody/
         Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money, "Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money);");
     }
 
+
 ## Pdb files
 
 The Pbd files are required for this plugin. To make it work in Release, please enable Debug Info(pdbonly) in Advanced Build Settings Dialog Box. [More info](https://msdn.microsoft.com/en-us/library/s4wcexbc.aspx)
+
 
 ## Icon
 
