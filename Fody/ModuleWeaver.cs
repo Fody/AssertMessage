@@ -94,7 +94,7 @@ namespace AssertMessage.Fody
             var index = 0;
             var toAdd = new List<InstructionToInsert>();
             SequencePoint lastSequencePoint = null;
-            
+
             foreach (var ins in instructions)
             {
                 lastSequencePoint = method.DebugInformation.GetSequencePoint(ins) ?? lastSequencePoint;
@@ -128,7 +128,7 @@ namespace AssertMessage.Fody
 
         private InstructionToInsert GenerateNewCode(int index, SequencePoint lastSequencePoint, Instruction ins, MethodReference newMethod)
         {
-            var imported = ModuleDefinition.Import(newMethod);
+            var imported = ModuleDefinition.ImportReference(newMethod);
             ins.Operand = imported;
             var source = sequencePointExtrator.GetSourceCode(lastSequencePoint);
             var loadString = Instruction.Create(OpCodes.Ldstr, source);
