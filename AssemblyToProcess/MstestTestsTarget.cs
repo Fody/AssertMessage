@@ -1,94 +1,192 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 public class MstestTestsTarget
 {
-    public void AreEqualInt_should_have_message()
+    public string AreEqualInt_should_have_message()
     {
         var expected = 1;
         var actual = 2;
 
-        // ReSharper disable once RedundantTypeArgumentsOfMethod
-        Assert.AreEqual<int>(expected, actual);
+        try
+        {
+            // ReSharper disable once RedundantTypeArgumentsOfMethod
+            Assert.AreEqual<int>(expected, actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void AreEqual_should_have_message()
+    public string AreEqual_should_have_message()
     {
         var expected = "1";
         var actual = "2";
 
-        Assert.AreEqual(expected, actual);
+        try
+        {
+            Assert.AreEqual(expected, actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void StringContains_should_have_message()
+    public string StringContains_should_have_message()
     {
         var actual = "badstring";
 
-        StringAssert.Contains("test", actual);
+        try
+        {
+            StringAssert.Contains("test", actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void AreEqual_should_have_message_original_formated_message()
+    public string AreEqual_should_have_message_original_formated_message()
     {
         var expected = 1;
         var actual = 2;
 
-        Assert.AreEqual(expected, actual, "{0}_{1}", "original", "message");
+        try
+        {
+            Assert.AreEqual(expected, actual, "{0}_{1}", "original", "message");
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void AreEqual_should_have_message_for_object()
+    public string AreEqual_should_have_message_for_object()
     {
         var expected = new object();
         var actual = new object();
 
-        Assert.AreEqual(expected, actual);
+        try
+        {
+            Assert.AreEqual(expected, actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void AreEqual_should_have_message_original_message()
+    public string AreEqual_should_have_message_original_message()
     {
         var expected = 1;
         var actual = 2;
 
-        Assert.AreEqual(expected, actual, "original_message");
+        try
+        {
+            Assert.AreEqual(expected, actual, "original_message");
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void AreNotEqual_should_have_message()
+    public string AreNotEqual_should_have_message()
     {
         var notExpected = 1.5;
         var actual = 1.5;
 
-        Assert.AreNotEqual(notExpected, actual);
+        try
+        {
+            Assert.AreNotEqual(notExpected, actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void Contains_should_have_message()
+    public string Contains_should_have_message()
     {
         var expected = new object();
         var collection = new[] {new object(), new object()};
 
-        CollectionAssert.Contains(collection, expected);
+        try
+        {
+            CollectionAssert.Contains(collection, expected);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void IsTrue_should_have_message()
+    public string IsTrue_should_have_message()
     {
         var actual = false;
 
-        Assert.IsTrue(actual);
+        try
+        {
+            Assert.IsTrue(actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void IsFalse_should_have_message()
+    public string IsFalse_should_have_message()
     {
         var actual = true;
 
-        Assert.IsFalse(actual);
+        try
+        {
+            Assert.IsFalse(actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void IsInstanceOf_should_have_message()
+    public string IsInstanceOf_should_have_message()
     {
         var actual = new object();
 
-        Assert.IsInstanceOfType(actual, typeof(int));
+        try
+        {
+            Assert.IsInstanceOfType(actual, typeof(int));
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void Fail_should_have_message()
+    public string Fail_should_have_message()
     {
-        Assert.Fail();
+        try
+        {
+            Assert.Fail();
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+
+        return null;
     }
 }

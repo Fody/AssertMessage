@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 public class DebugTestsTarget
 {
@@ -8,17 +9,34 @@ public class DebugTestsTarget
         Trace.Listeners.Add(new ErrorThrowingTraceListener());
     }
 
-    public void False_should_have_message()
+    public string False_should_have_message()
     {
         var actual = false;
 
-        Debug.Assert(actual);
+        try
+        {
+            Debug.Assert(actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+
+        return null;
     }
 
-    public void False_should_have_original_message()
+    public string False_should_have_original_message()
     {
         var actual = false;
 
-        Debug.Assert(actual, "original");
+        try
+        {
+            Debug.Assert(actual, "original");
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 }
