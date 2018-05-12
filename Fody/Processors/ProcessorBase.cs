@@ -77,7 +77,7 @@ public abstract class ProcessorBase : IProcessor
         return found;
     }
 
-    private static MethodReference GetGenericMethod(MethodDefinition newMethod, GenericInstanceMethod genericMethod)
+    static MethodReference GetGenericMethod(MethodDefinition newMethod, GenericInstanceMethod genericMethod)
     {
         var newGenericMethod = new GenericInstanceMethod(newMethod);
 

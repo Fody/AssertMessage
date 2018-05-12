@@ -1,6 +1,6 @@
 ﻿using Mono.Cecil.Cil;
 
-internal struct InstructionToInsert
+struct InstructionToInsert
 {
     public InstructionToInsert(int position, Instruction instruction)
         : this()
@@ -9,8 +9,7 @@ internal struct InstructionToInsert
         Instruction = instruction;
     }
 
-    public int Position { get; private set; }
+    public int Position { get; }
 
-    public Instruction Instruction { get; private set; }
+    public Instruction Instruction { get; }
 }
-

@@ -1,12 +1,11 @@
 ﻿using System;
-
 using Mono.Cecil.Cil;
 using System.Collections.Generic;
 using System.Linq;
 
 public class SequencePointExtrator : ISequencePointExtrator
 {
-    private readonly ISourceCodeProvider sourceCodeProvider;
+    ISourceCodeProvider sourceCodeProvider;
 
     public SequencePointExtrator(ISourceCodeProvider sourceCodeProvider)
     {

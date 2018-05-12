@@ -7,7 +7,7 @@ using System.Linq;
 
 public class ModuleWeaver
 {
-    private const string AssemblyName = "AssertionMessage";
+    const string AssemblyName = "AssertionMessage";
 
     public ModuleDefinition ModuleDefinition { get; set; }
 

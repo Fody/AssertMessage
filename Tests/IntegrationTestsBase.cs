@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 public abstract class IntegrationTestsBase<TException>
     where TException : Exception
 {
-    private Type type;
+    Type type;
 
     public IntegrationTestsBase()
     {
@@ -34,7 +34,7 @@ public abstract class IntegrationTestsBase<TException>
         }
     }
 
-    private void CallTestMethod(string memberName)
+    void CallTestMethod(string memberName)
     {
         var test = Activator.CreateInstance(type);
         var method = test.GetType().GetMethod(memberName);

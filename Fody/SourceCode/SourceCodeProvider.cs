@@ -4,7 +4,7 @@ using System.IO;
 
 public class SourceCodeProvider : ISourceCodeProvider
 {
-    private IDictionary<string, string[]> filesCache = new Dictionary<string, string[]>();
+    Dictionary<string, string[]> filesCache = new Dictionary<string, string[]>();
 
     public string[] GetSourceCode(string path)
     {
