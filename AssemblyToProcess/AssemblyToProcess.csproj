@@ -50,13 +50,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DebugTests.cs" />
+    <Compile Include="DebugTestsTarget.cs" />
     <Compile Include="ErrorThrowingTraceListener.cs" />
-    <Compile Include="NunitTests.cs">
+    <Compile Include="NunitTestsTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MstestTests.cs" />
-    <Compile Include="XunitTests.cs" />
+    <Compile Include="MstestTestsTarget.cs" />
+    <Compile Include="XunitTestsTarget.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -10,7 +10,7 @@ public abstract class IntegrationTestsBase<TException>
 
     public IntegrationTestsBase()
     {
-        var testType = GetType().FullName.Replace("Tests.", "AssemblyToProcess.");
+        var testType = GetType().FullName.Replace("Tests.", "AssemblyToProcess.")+ "Target";
         type = AssemblyLoader.Assembly.GetType(testType);
     }
 

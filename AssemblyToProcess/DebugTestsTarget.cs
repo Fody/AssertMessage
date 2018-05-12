@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 
-public class DebugTests
+public class DebugTestsTarget
 {
-    static DebugTests()
+    static DebugTestsTarget()
     {
         Trace.Listeners.Remove("Default");
         Trace.Listeners.Add(new ErrorThrowingTraceListener());

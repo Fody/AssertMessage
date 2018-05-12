@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-public class XunitTests
+public class XunitTestsTarget
 {
     public void True_should_have_message()
     {

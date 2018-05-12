@@ -1,24 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
+using System;
 
-public class MstestTests
+public class NunitTestsTarget
 {
-    public void AreEqualInt_should_have_message()
-    {
-        var expected = 1;
-        var actual = 2;
-
-        // ReSharper disable once RedundantTypeArgumentsOfMethod
-        Assert.AreEqual<int>(expected, actual);
-    }
-
-    public void AreEqual_should_have_message()
-    {
-        var expected = "1";
-        var actual = "2";
-
-        Assert.AreEqual(expected, actual);
-    }
-
     public void StringContains_should_have_message()
     {
         var actual = "badstring";
@@ -32,6 +16,14 @@ public class MstestTests
         var actual = 2;
 
         Assert.AreEqual(expected, actual, "{0}_{1}", "original", "message");
+    }
+
+    public void AreEqual_should_have_message_for_int()
+    {
+        var expected = 1;
+        var actual = 2;
+
+        Assert.AreEqual(expected, actual);
     }
 
     public void AreEqual_should_have_message_for_object()
@@ -52,10 +44,10 @@ public class MstestTests
 
     public void AreNotEqual_should_have_message()
     {
-        var notExpected = 1.5;
-        var actual = 1.5;
+        var expected = 1;
+        var actual = 1;
 
-        Assert.AreNotEqual(notExpected, actual);
+        Assert.AreNotEqual(expected, actual);
     }
 
     public void Contains_should_have_message()
@@ -63,7 +55,7 @@ public class MstestTests
         var expected = new object();
         var collection = new[] {new object(), new object()};
 
-        CollectionAssert.Contains(collection, expected);
+        Assert.Contains(expected, collection);
     }
 
     public void IsTrue_should_have_message()
@@ -73,18 +65,33 @@ public class MstestTests
         Assert.IsTrue(actual);
     }
 
-    public void IsFalse_should_have_message()
+    public void False_should_have_message()
     {
         var actual = true;
 
-        Assert.IsFalse(actual);
+        Assert.False(actual);
+    }
+
+    public void IsEmpty_should_have_message_for_collection()
+    {
+        var actual = new[] {new object()};
+
+        Assert.IsEmpty(actual);
     }
 
     public void IsInstanceOf_should_have_message()
     {
         var actual = new object();
 
-        Assert.IsInstanceOfType(actual, typeof(int));
+        Assert.IsInstanceOf<int>(actual);
+    }
+
+    public void Throws_should_have_message()
+    {
+        var action = new TestDelegate(() => { });
+
+        var ex = Assert.Throws<Exception>(action);
+        Assert.IsNotNull(ex);
     }
 
     public void Fail_should_have_message()
