@@ -19,7 +19,6 @@ internal class AssemblyLoader
         File.Copy(beforeAssemblyPath, afterAssemblyPath, true);
         File.Copy(pbdBeforeAssemblyPath, pbdAfterAssemblyPath, true);
         var weavedAssemblyPath = beforeAssemblyPath.Replace(".dll", "3.dll");
-        var weavedAfterAssemblyPath = beforeAssemblyPath.Replace(".dll", "3.pdb");
 
         var assemblyResolver = new MockAssemblyResolver
         {
