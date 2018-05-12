@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using Tests;
 
 [TestFixture]
 public class DebugTests : IntegrationTestsBase<Exception>

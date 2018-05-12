@@ -2,7 +2,6 @@
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Tests;
 
 public abstract class IntegrationTestsBase<TException>
     where TException : Exception
