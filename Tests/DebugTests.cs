@@ -1,21 +1,19 @@
 ﻿using System;
 using NUnit.Framework;
+using Tests;
 
-namespace Tests
+[TestFixture]
+public class DebugTests : IntegrationTestsBase<Exception>
 {
-  [TestFixture]
-  public class DebugTests : IntegrationTestsBase<Exception>
-  {
     [Test]
     public void False_should_have_message()
     {
-      CheckIfMessageIsValid("Debug.Assert(actual);");
+        CheckIfMessageIsValid("Debug.Assert(actual);");
     }
 
     [Test]
     public void False_should_have_original_message()
     {
-      CheckIfMessageIsValid("original");
+        CheckIfMessageIsValid("original");
     }
-  }
 }
