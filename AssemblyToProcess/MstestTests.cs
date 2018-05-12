@@ -10,6 +10,7 @@ namespace AssemblyToProcess
             var expected = 1;
             var actual = 2;
 
+            // ReSharper disable once RedundantTypeArgumentsOfMethod
             Assert.AreEqual<int>(expected, actual);
         }
 
@@ -63,7 +64,7 @@ namespace AssemblyToProcess
         public void Contains_should_have_message()
         {
             var expected = new object();
-            var collection = new[] { new Object(), new Object() };
+            var collection = new[] { new object(), new object() };
 
             CollectionAssert.Contains(collection, expected);
         }
@@ -84,7 +85,7 @@ namespace AssemblyToProcess
 
         public void IsInstanceOf_should_have_message()
         {
-            var actual = new Object();
+            var actual = new object();
 
             Assert.IsInstanceOfType(actual, typeof(int));
         }

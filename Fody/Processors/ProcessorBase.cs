@@ -35,8 +35,7 @@ namespace AssertMessage.Fody.Processors
                 return null;
             }
 
-            var genericMethod = methodReference as GenericInstanceMethod;
-            if (genericMethod != null)
+            if (methodReference is GenericInstanceMethod genericMethod)
             {
                 return GetGenericMethod(newMethod, genericMethod);
             }

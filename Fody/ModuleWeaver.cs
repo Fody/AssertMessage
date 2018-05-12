@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-using AssertMessage.Fody.Processors;
+﻿using AssertMessage.Fody.Processors;
 using AssertMessage.Fody.SourceCode;
 using Mono.Cecil;
 using Mono.Cecil.Cil;

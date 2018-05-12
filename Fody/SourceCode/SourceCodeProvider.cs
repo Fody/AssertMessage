@@ -10,8 +10,7 @@ namespace AssertMessage.Fody.SourceCode
 
         public string[] GetSourceCode(string path)
         {
-            string[] result = null;
-            if(filesCache.TryGetValue(path, out result))
+            if(filesCache.TryGetValue(path, out var result))
             {
                 return result;
             }

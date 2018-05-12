@@ -20,7 +20,7 @@ namespace AssertMessage.Fody.Processors
       var name = resolved.DeclaringType.Name;
       var methodName = resolved.Name;
 
-      return (name.Equals("Debug") && methodName.Equals("Assert"));
+      return name.Equals("Debug") && methodName.Equals("Assert");
     }
   }
 }

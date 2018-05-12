@@ -32,7 +32,7 @@ namespace AssemblyToProcess
         {
             var expected = new object();
             var actual = new object();
-            
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -43,7 +43,7 @@ namespace AssemblyToProcess
 
             Assert.AreEqual(expected, actual, "original_message");
         }
-        
+
         public void AreNotEqual_should_have_message()
         {
             var expected = 1;
@@ -55,7 +55,7 @@ namespace AssemblyToProcess
         public void Contains_should_have_message()
         {
             var expected = new object();
-            var collection = new[] { new Object(), new Object() };
+            var collection = new[] { new object(), new object() };
 
             Assert.Contains(expected, collection);
         }
@@ -66,7 +66,7 @@ namespace AssemblyToProcess
 
             Assert.IsTrue(actual);
         }
-        
+
         public void False_should_have_message()
         {
             var actual = true;
@@ -83,7 +83,7 @@ namespace AssemblyToProcess
 
         public void IsInstanceOf_should_have_message()
         {
-            var actual = new Object();
+            var actual = new object();
 
             Assert.IsInstanceOf<int>(actual);
         }
