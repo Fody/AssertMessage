@@ -1,9 +1,6 @@
 ﻿using Mono.Cecil.Cil;
 
-namespace AssertMessage.Fody.SourceCode
+public interface ISequencePointExtrator
 {
-    public interface ISequencePointExtrator
-    {
-        string GetSourceCode(SequencePoint sequencePoint);
-    }
+    string GetSourceCode(SequencePoint sequencePoint);
 }

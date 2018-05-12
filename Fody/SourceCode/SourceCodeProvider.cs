@@ -2,30 +2,27 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace AssertMessage.Fody.SourceCode
+public class SourceCodeProvider : ISourceCodeProvider
 {
-    public class SourceCodeProvider : ISourceCodeProvider
+    private IDictionary<string, string[]> filesCache = new Dictionary<string, string[]>();
+
+    public string[] GetSourceCode(string path)
     {
-        private IDictionary<string, string[]> filesCache = new Dictionary<string, string[]>();
-
-        public string[] GetSourceCode(string path)
+        if (filesCache.TryGetValue(path, out var result))
         {
-            if(filesCache.TryGetValue(path, out var result))
-            {
-                return result;
-            }
-
-            try
-            {
-                result = File.ReadAllLines(path);
-            }
-            catch(Exception)
-            {
-                result = null;
-            }
-
-            filesCache[path] = result;
             return result;
         }
+
+        try
+        {
+            result = File.ReadAllLines(path);
+        }
+        catch (Exception)
+        {
+            result = null;
+        }
+
+        filesCache[path] = result;
+        return result;
     }
 }

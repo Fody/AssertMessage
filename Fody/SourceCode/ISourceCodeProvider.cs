@@ -1,7 +1,4 @@
-﻿namespace AssertMessage.Fody.SourceCode
+﻿public interface ISourceCodeProvider
 {
-    public interface ISourceCodeProvider
-    {
-        string[] GetSourceCode(string path);
-    }
+    string[] GetSourceCode(string path);
 }

@@ -1,9 +1,8 @@
-﻿using AssertMessage.Fody;
-using Mono.Cecil;
+﻿using Mono.Cecil;
 using System.IO;
 using System.Reflection;
 
-internal class AssemblyLoader
+class AssemblyLoader
 {
     static AssemblyLoader()
     {
