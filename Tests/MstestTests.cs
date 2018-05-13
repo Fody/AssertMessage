@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 public class MstestTests : IntegrationTestsBase
 {
@@ -12,11 +13,9 @@ public class MstestTests : IntegrationTestsBase
     [Fact]
     public void AreEqual_should_have_message_original_formatted_message()
     {
-        CheckIfMessageIsValid(message =>
-        {
-            Assert.Contains("original_message", message);
-            Assert.DoesNotContain("Assert.AreEqual(", message);
-        });
+        var message = CallTestMethod();
+        Assert.Contains("original_message", message);
+        Assert.DoesNotContain("Assert.AreEqual(", message);
     }
 
     [Fact]
@@ -43,11 +42,9 @@ public class MstestTests : IntegrationTestsBase
     [Fact]
     public void AreEqual_should_have_message_original_message()
     {
-        CheckIfMessageIsValid(message =>
-        {
-            Assert.Contains("original_message", message);
-            Assert.DoesNotContain("Assert.AreEqual(", message);
-        });
+        var message = CallTestMethod();
+        Assert.Contains("original_message", message);
+        Assert.DoesNotContain("Assert.AreEqual(", message);
     }
 
     [Fact]

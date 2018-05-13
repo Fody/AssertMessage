@@ -19,18 +19,6 @@ public abstract class IntegrationTestsBase
             ignoreCodes: new List<string> { "0x80131869" });
     }
 
-    protected void CheckIfMessageIsValid(string message, [CallerMemberName] string memberName = "")
-    {
-        var assertionMessage = CallTestMethod(memberName);
-        Assert.Contains(message, assertionMessage);
-    }
-
-    protected void CheckIfMessageIsValid(Action<string> action, [CallerMemberName] string memberName = "")
-    {
-        var message = CallTestMethod(memberName);
-        action(message);
-    }
-
     protected string CallTestMethod([CallerMemberName] string memberName = "")
     {
         var name = GetType().Name + "Target";
