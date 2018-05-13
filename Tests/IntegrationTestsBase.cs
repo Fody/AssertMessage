@@ -1,8 +1,9 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Fody;
+using Xunit;
+
 #pragma warning disable 618
 
 public abstract class IntegrationTestsBase
@@ -20,7 +21,7 @@ public abstract class IntegrationTestsBase
 
     protected void CheckIfMessageIsValid(string message, [CallerMemberName] string memberName = "")
     {
-        CheckIfMessageIsValid(assertionMessage => StringAssert.Contains(message, assertionMessage), memberName);
+        CheckIfMessageIsValid(assertionMessage => Assert.Contains(message, assertionMessage), memberName);
     }
 
     protected void CheckIfMessageIsValid(Action<string> action, [CallerMemberName] string memberName = "")
@@ -35,7 +36,7 @@ public abstract class IntegrationTestsBase
         var type = testResult.Assembly.GetType(name);
         var test = Activator.CreateInstance(type);
         var method = test.GetType().GetMethod(memberName);
-        Assert.NotNull(method, "Invalid test name: {0}", memberName);
+        Assert.NotNull(method);
 
         return (string )method.Invoke(test, new object[0]);
     }

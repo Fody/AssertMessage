@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using Xunit;
+﻿using Xunit;
 
 public class NunitTests : IntegrationTestsBase
 {
@@ -21,7 +20,7 @@ public class NunitTests : IntegrationTestsBase
         CheckIfMessageIsValid("Assert.AreEqual(expected, actual);");
     }
 
-    [Test]
+    [Fact]
     public void AreNotEqual_should_have_message()
     {
         CheckIfMessageIsValid("Assert.AreNotEqual(expected, actual);");
@@ -32,8 +31,8 @@ public class NunitTests : IntegrationTestsBase
     {
         CheckIfMessageIsValid(message =>
         {
-            StringAssert.Contains("original_message", message);
-            StringAssert.DoesNotContain("Assert.AreEqual(", message);
+            Assert.Contains("original_message", message);
+            Assert.DoesNotContain("Assert.AreEqual(", message);
         });
     }
 
@@ -42,8 +41,8 @@ public class NunitTests : IntegrationTestsBase
     {
         CheckIfMessageIsValid(message =>
         {
-            StringAssert.Contains("original_message", message);
-            StringAssert.DoesNotContain("Assert.AreEqual(", message);
+            Assert.Contains("original_message", message);
+            Assert.DoesNotContain("Assert.AreEqual(", message);
         });
     }
 

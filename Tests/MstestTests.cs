@@ -13,8 +13,8 @@ public class MstestTests : IntegrationTestsBase
     {
         CheckIfMessageIsValid(message =>
         {
-            NUnit.Framework.StringAssert.Contains("original_message", message);
-            NUnit.Framework.StringAssert.DoesNotContain("Assert.AreEqual(", message);
+            Assert.Contains("original_message", message);
+            Assert.DoesNotContain("Assert.AreEqual(", message);
         });
     }
 
@@ -41,8 +41,8 @@ public class MstestTests : IntegrationTestsBase
     {
         CheckIfMessageIsValid(message =>
         {
-            NUnit.Framework.StringAssert.Contains("original_message", message);
-            NUnit.Framework.StringAssert.DoesNotContain("Assert.AreEqual(", message);
+            Assert.Contains("original_message", message);
+            Assert.DoesNotContain("Assert.AreEqual(", message);
         });
     }
 
