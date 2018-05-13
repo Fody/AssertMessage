@@ -2,6 +2,7 @@
 using Mono.Cecil.Cil;
 using System.Collections.Generic;
 using System.Linq;
+using Fody;
 
 public class SequencePointExtrator : ISequencePointExtrator
 {
@@ -21,7 +22,7 @@ public class SequencePointExtrator : ISequencePointExtrator
         }
         catch (Exception)
         {
-            throw new WeavingException("Can not find sourcecode. Please make sure that generating PDB is enabled.");
+            throw new WeavingException("Can not find sourcecode. Ensure that generating PDB is enabled.");
         }
 
         if (lines == null)

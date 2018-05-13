@@ -4,6 +4,7 @@ using Mono.Cecil.Rocks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Fody;
 
 public class ModuleWeaver
 {
@@ -63,7 +64,7 @@ public class ModuleWeaver
             }
             catch (Exception ex)
             {
-                throw new WeavingException("Excpetion occurs occurred  procesing type: " + method.DeclaringType.FullName + ". Report bug with code on https://github.com/Fody/AssertMessage Error: " + ex.Message + ex.StackTrace);
+                throw new WeavingException($"Exception occurred processing type: {method.DeclaringType.FullName}. Report bug with code on https://github.com/Fody/AssertMessage Error: {ex.Message}{ex.StackTrace}");
             }
         }
     }
