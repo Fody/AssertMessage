@@ -1,4 +1,5 @@
 ﻿using Xunit;
+using Xunit.Abstractions;
 
 public class XunitTests : IntegrationTestsBase
 {
@@ -14,5 +15,9 @@ public class XunitTests : IntegrationTestsBase
     {
         var assertionMessage = CallTestMethod();
         Assert.Contains("Assert.False(actual);", assertionMessage);
+    }
+
+    public XunitTests(ITestOutputHelper output) : base(output)
+    {
     }
 }

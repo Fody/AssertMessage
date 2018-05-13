@@ -1,5 +1,6 @@
 ﻿#if DEBUG
 using Xunit;
+using Xunit.Abstractions;
 
 public class DebugTests : IntegrationTestsBase
 {
@@ -15,6 +16,10 @@ public class DebugTests : IntegrationTestsBase
     {
         var assertionMessage = CallTestMethod();
         Assert.Contains("original", assertionMessage);
+    }
+
+    public DebugTests(ITestOutputHelper output) : base(output)
+    {
     }
 }
 #endif

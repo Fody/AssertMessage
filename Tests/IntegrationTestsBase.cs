@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Fody;
 using Xunit;
+using Xunit.Abstractions;
 
 #pragma warning disable 618
 
-public abstract class IntegrationTestsBase
+public abstract class IntegrationTestsBase: TestBase
 {
     static TestResult testResult;
 
@@ -28,5 +29,9 @@ public abstract class IntegrationTestsBase
         Assert.NotNull(method);
 
         return (string )method.Invoke(test, new object[0]);
+    }
+
+    protected IntegrationTestsBase(ITestOutputHelper output) : base(output)
+    {
     }
 }
