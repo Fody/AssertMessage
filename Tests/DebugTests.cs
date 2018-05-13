@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿#if DEBUG
+using Xunit;
 
 public class DebugTests : IntegrationTestsBase
 {
@@ -14,3 +15,4 @@ public class DebugTests : IntegrationTestsBase
         CheckIfMessageIsValid("original");
     }
 }
+#endif
