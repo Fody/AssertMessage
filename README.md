@@ -3,7 +3,7 @@
 
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
-![Icon](https://raw.githubusercontent.com/Fody/AssertMessage/master/Icons/package_icon.png)
+![Icon](https://raw.githubusercontent.com/Fody/AssertMessage/master/package_icon.png)
 
 Adds 'message' parameter to Assertions. It is generated from source code.
 
@@ -15,33 +15,53 @@ Supported frameworks:
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage).
 
 
-## The nuget package
+### NuGet installation
 
-https://nuget.org/packages/AssertMessage.Fody/
+Install the [AssertMessage.Fody NuGet package](https://nuget.org/packages/AssertMessage.Fody/) and update the [Fody NuGet package](https://nuget.org/packages/Fody/):
 
-    PM> Install-Package AssertMessage.Fody
+```
+PM> Install-Package AssertMessage.Fody
+PM> Update-Package Fody
+```
 
+The `Update-Package Fody` is required since NuGet always defaults to the oldest, and most buggy, version of any dependency.
+
+
+### Add to FodyWeavers.xml
+
+Add `<AssertMessage/>` to [FodyWeavers.xml](https://github.com/Fody/Fody#add-fodyweaversxml)
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<Weavers>
+  <AssertMessage/>
+</Weavers>
+```
 
 ## Your Code
 
-    public void CustomerTest()
-    {
-        var expectedCustomer = new Customer();
-        var actualCustomer = new Customer();
-        ...
-        Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money);
-    }
+```csharp
+public void CustomerTest()
+{
+    var expectedCustomer = new Customer();
+    var actualCustomer = new Customer();
+    ...
+    Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money);
+}
+```
 
 
 ## What gets compiled
 
-    public void CustomerTest()
-    {
-        var expectedCustomer = new Customer();
-        var actualCustomer = new Customer();
-        ...
-        Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money, "Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money);");
-    }
+```csharp
+public void CustomerTest()
+{
+    var expectedCustomer = new Customer();
+    var actualCustomer = new Customer();
+    ...
+    Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money, "Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money);");
+}
+```
 
 
 ## Pdb files
