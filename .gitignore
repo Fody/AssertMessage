@@ -32,7 +32,6 @@
 *.vspscc
 .builds
 *.dotCover
-NugetBuild/
 
 *.DotSettings
 *.ncrunchsolution
