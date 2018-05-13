@@ -1,84 +1,95 @@
 ﻿using Xunit;
+using Xunit.Abstractions;
 
 public class MstestTests : IntegrationTestsBase
 {
     [Fact]
     public void StringContains_should_have_message()
     {
-        CheckIfMessageIsValid("StringAssert.Contains(\"test\", actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("StringAssert.Contains(\"test\", actual);", assertionMessage);
     }
 
     [Fact]
     public void AreEqual_should_have_message_original_formatted_message()
     {
-        CheckIfMessageIsValid(message =>
-        {
-            Assert.Contains("original_message", message);
-            Assert.DoesNotContain("Assert.AreEqual(", message);
-        });
+        var message = CallTestMethod();
+        Assert.Contains("original_message", message);
+        Assert.DoesNotContain("Assert.AreEqual(", message);
     }
 
     [Fact]
     public void AreEqual_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.AreEqual(expected, actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.AreEqual(expected, actual);", assertionMessage);
     }
 
     [Fact]
     public void AreEqualInt_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.AreEqual<int>(expected, actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.AreEqual<int>(expected, actual);", assertionMessage);
     }
 
     [Fact]
     public void AreEqual_should_have_message_for_object()
     {
-        CheckIfMessageIsValid("Assert.AreEqual(expected, actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.AreEqual(expected, actual);", assertionMessage);
     }
 
     [Fact]
     public void AreEqual_should_have_message_original_message()
     {
-        CheckIfMessageIsValid(message =>
-        {
-            Assert.Contains("original_message", message);
-            Assert.DoesNotContain("Assert.AreEqual(", message);
-        });
+        var message = CallTestMethod();
+        Assert.Contains("original_message", message);
+        Assert.DoesNotContain("Assert.AreEqual(", message);
     }
 
     [Fact]
     public void AreNotEqual_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.AreNotEqual(notExpected, actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.AreNotEqual(notExpected, actual);", assertionMessage);
     }
 
     [Fact]
     public void Contains_should_have_message()
     {
-        CheckIfMessageIsValid("CollectionAssert.Contains(collection, expected);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("CollectionAssert.Contains(collection, expected);", assertionMessage);
     }
 
     [Fact]
     public void IsTrue_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.IsTrue(actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.IsTrue(actual);", assertionMessage);
     }
 
     [Fact]
     public void IsFalse_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.IsFalse(actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.IsFalse(actual);", assertionMessage);
     }
 
     [Fact]
     public void IsInstanceOf_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.IsInstanceOfType(actual, typeof(int));");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.IsInstanceOfType(actual, typeof(int));", assertionMessage);
     }
 
     [Fact]
     public void Fail_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.Fail();");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.Fail();", assertionMessage);
+    }
+
+    public MstestTests(ITestOutputHelper output) : base(output)
+    {
     }
 }
