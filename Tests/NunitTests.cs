@@ -1,21 +1,21 @@
 ﻿using NUnit.Framework;
+using Xunit;
 
-[TestFixture]
 public class NunitTests : IntegrationTestsBase<AssertionException>
 {
-    [Test]
+    [Fact]
     public void StringContains_should_have_message()
     {
         CheckIfMessageIsValid("StringAssert.Contains(\"test\", actual);");
     }
 
-    [Test]
+    [Fact]
     public void AreEqual_should_have_message_for_object()
     {
         CheckIfMessageIsValid("Assert.AreEqual(expected, actual);");
     }
 
-    [Test]
+    [Fact]
     public void AreEqual_should_have_message_for_int()
     {
         CheckIfMessageIsValid("Assert.AreEqual(expected, actual);");
@@ -27,7 +27,7 @@ public class NunitTests : IntegrationTestsBase<AssertionException>
         CheckIfMessageIsValid("Assert.AreNotEqual(expected, actual);");
     }
 
-    [Test]
+    [Fact]
     public void AreEqual_should_have_message_original_message()
     {
         CheckIfMessageIsValid(message =>
@@ -37,7 +37,7 @@ public class NunitTests : IntegrationTestsBase<AssertionException>
         });
     }
 
-    [Test]
+    [Fact]
     public void AreEqual_should_have_message_original_formated_message()
     {
         CheckIfMessageIsValid(message =>
@@ -47,43 +47,43 @@ public class NunitTests : IntegrationTestsBase<AssertionException>
         });
     }
 
-    [Test]
+    [Fact]
     public void Contains_should_have_message()
     {
         CheckIfMessageIsValid("Assert.Contains(expected, collection);");
     }
 
-    [Test]
+    [Fact]
     public void IsTrue_should_have_message()
     {
         CheckIfMessageIsValid("Assert.IsTrue(actual);");
     }
 
-    [Test]
+    [Fact]
     public void False_should_have_message()
     {
         CheckIfMessageIsValid("Assert.False(actual);");
     }
 
-    [Test]
+    [Fact]
     public void IsEmpty_should_have_message_for_collection()
     {
         CheckIfMessageIsValid("Assert.IsEmpty(actual);");
     }
 
-    [Test]
+    [Fact]
     public void IsInstanceOf_should_have_message()
     {
         CheckIfMessageIsValid("Assert.IsInstanceOf<int>(actual);");
     }
 
-    [Test]
+    [Fact]
     public void Throws_should_have_message()
     {
         CheckIfMessageIsValid("Assert.Throws<Exception>(action);");
     }
 
-    [Test]
+    [Fact]
     public void Fail_should_have_message()
     {
         CheckIfMessageIsValid("Assert.Fail();");
