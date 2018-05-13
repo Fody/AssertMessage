@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFrameworks>net462</TargetFrameworks>
     <DisableFody>true</DisableFody>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MSTest.TestFramework" Version="1.3.0" />
