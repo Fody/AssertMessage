@@ -1,15 +1,14 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
-[TestFixture]
-public class XunitTests : IntegrationTestsBase<Xunit.Sdk.AssertException>
+public class XunitTests : IntegrationTestsBase
 {
-    [Test]
+    [Fact]
     public void True_should_have_message()
     {
         CheckIfMessageIsValid("Assert.True(actual);");
     }
 
-    [Test]
+    [Fact]
     public void False_should_have_message()
     {
         CheckIfMessageIsValid("Assert.False(actual);");

@@ -4,7 +4,7 @@ public class MstestProcessor : ProcessorBase
 {
     public override bool IsValidForModule(ModuleDefinition module)
     {
-        return IsReferenced(module, "Microsoft.VisualStudio.QualityTools.UnitTestFramework");
+        return IsReferenced(module, "Microsoft.VisualStudio.TestPlatform.TestFramework");
     }
 
     protected override bool IsThisFramework(MethodReference methodReference)

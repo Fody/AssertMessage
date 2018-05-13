@@ -3,99 +3,203 @@ using System;
 
 public class NunitTestsTarget
 {
-    public void StringContains_should_have_message()
+    public string StringContains_should_have_message()
     {
         var actual = "badstring";
 
-        StringAssert.Contains("test", actual);
+        try
+        {
+            StringAssert.Contains("test", actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void AreEqual_should_have_message_original_formated_message()
+    public string AreEqual_should_have_message_original_formatted_message()
     {
         var expected = 1;
         var actual = 2;
 
-        Assert.AreEqual(expected, actual, "{0}_{1}", "original", "message");
+        try
+        {
+            Assert.AreEqual(expected, actual, "{0}_{1}", "original", "message");
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void AreEqual_should_have_message_for_int()
+    public string AreEqual_should_have_message_for_int()
     {
         var expected = 1;
         var actual = 2;
 
-        Assert.AreEqual(expected, actual);
+        try
+        {
+            Assert.AreEqual(expected, actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void AreEqual_should_have_message_for_object()
+    public string AreEqual_should_have_message_for_object()
     {
         var expected = new object();
         var actual = new object();
 
-        Assert.AreEqual(expected, actual);
+        try
+        {
+            Assert.AreEqual(expected, actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void AreEqual_should_have_message_original_message()
+    public string AreEqual_should_have_message_original_message()
     {
         var expected = 1;
         var actual = 2;
 
-        Assert.AreEqual(expected, actual, "original_message");
+        try
+        {
+            Assert.AreEqual(expected, actual, "original_message");
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void AreNotEqual_should_have_message()
+    public string AreNotEqual_should_have_message()
     {
         var expected = 1;
         var actual = 1;
 
-        Assert.AreNotEqual(expected, actual);
+        try
+        {
+            Assert.AreNotEqual(expected, actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void Contains_should_have_message()
+    public string Contains_should_have_message()
     {
         var expected = new object();
         var collection = new[] {new object(), new object()};
 
-        Assert.Contains(expected, collection);
+        try
+        {
+            Assert.Contains(expected, collection);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void IsTrue_should_have_message()
+    public string IsTrue_should_have_message()
     {
         var actual = false;
 
-        Assert.IsTrue(actual);
+        try
+        {
+            Assert.IsTrue(actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void False_should_have_message()
+    public string False_should_have_message()
     {
         var actual = true;
 
-        Assert.False(actual);
+        try
+        {
+            Assert.False(actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void IsEmpty_should_have_message_for_collection()
+    public string IsEmpty_should_have_message_for_collection()
     {
         var actual = new[] {new object()};
 
-        Assert.IsEmpty(actual);
+        try
+        {
+            Assert.IsEmpty(actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void IsInstanceOf_should_have_message()
+    public string IsInstanceOf_should_have_message()
     {
         var actual = new object();
 
-        Assert.IsInstanceOf<int>(actual);
+        try
+        {
+            Assert.IsInstanceOf<int>(actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void Throws_should_have_message()
+    public string Throws_should_have_message()
     {
         var action = new TestDelegate(() => { });
 
-        var ex = Assert.Throws<Exception>(action);
-        Assert.IsNotNull(ex);
+        try
+        {
+            var ex = Assert.Throws<Exception>(action);
+            Assert.IsNotNull(ex);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void Fail_should_have_message()
+    public string Fail_should_have_message()
     {
-        Assert.Fail();
+        try
+        {
+            Assert.Fail();
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 }

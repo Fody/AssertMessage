@@ -1,17 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
+﻿using Xunit;
 
-[TestFixture]
-public class MstestTests : IntegrationTestsBase<AssertFailedException>
+public class MstestTests : IntegrationTestsBase
 {
-    [Test]
+    [Fact]
     public void StringContains_should_have_message()
     {
         CheckIfMessageIsValid("StringAssert.Contains(\"test\", actual);");
     }
 
-    [Test]
-    public void AreEqual_should_have_message_original_formated_message()
+    [Fact]
+    public void AreEqual_should_have_message_original_formatted_message()
     {
         CheckIfMessageIsValid(message =>
         {
@@ -20,25 +18,25 @@ public class MstestTests : IntegrationTestsBase<AssertFailedException>
         });
     }
 
-    [Test]
+    [Fact]
     public void AreEqual_should_have_message()
     {
         CheckIfMessageIsValid("Assert.AreEqual(expected, actual);");
     }
 
-    [Test]
+    [Fact]
     public void AreEqualInt_should_have_message()
     {
         CheckIfMessageIsValid("Assert.AreEqual<int>(expected, actual);");
     }
 
-    [Test]
+    [Fact]
     public void AreEqual_should_have_message_for_object()
     {
         CheckIfMessageIsValid("Assert.AreEqual(expected, actual);");
     }
 
-    [Test]
+    [Fact]
     public void AreEqual_should_have_message_original_message()
     {
         CheckIfMessageIsValid(message =>
@@ -48,37 +46,37 @@ public class MstestTests : IntegrationTestsBase<AssertFailedException>
         });
     }
 
-    [Test]
+    [Fact]
     public void AreNotEqual_should_have_message()
     {
         CheckIfMessageIsValid("Assert.AreNotEqual(notExpected, actual);");
     }
 
-    [Test]
+    [Fact]
     public void Contains_should_have_message()
     {
         CheckIfMessageIsValid("CollectionAssert.Contains(collection, expected);");
     }
 
-    [Test]
+    [Fact]
     public void IsTrue_should_have_message()
     {
         CheckIfMessageIsValid("Assert.IsTrue(actual);");
     }
 
-    [Test]
+    [Fact]
     public void IsFalse_should_have_message()
     {
         CheckIfMessageIsValid("Assert.IsFalse(actual);");
     }
 
-    [Test]
+    [Fact]
     public void IsInstanceOf_should_have_message()
     {
         CheckIfMessageIsValid("Assert.IsInstanceOfType(actual, typeof(int));");
     }
 
-    [Test]
+    [Fact]
     public void Fail_should_have_message()
     {
         CheckIfMessageIsValid("Assert.Fail();");

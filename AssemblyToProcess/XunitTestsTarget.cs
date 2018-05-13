@@ -1,18 +1,35 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 public class XunitTestsTarget
 {
-    public void True_should_have_message()
+    public string True_should_have_message()
     {
         var actual = false;
 
-        Assert.True(actual);
+        try
+        {
+            Assert.True(actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 
-    public void False_should_have_message()
+    public string False_should_have_message()
     {
         var actual = true;
 
-        Assert.False(actual);
+        try
+        {
+            Assert.False(actual);
+        }
+        catch (Exception exception)
+        {
+            return exception.Message;
+        }
+        return null;
     }
 }
