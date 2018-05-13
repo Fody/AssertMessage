@@ -1,7 +1,6 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
 
-public class DebugTests : IntegrationTestsBase<Exception>
+public class DebugTests : IntegrationTestsBase
 {
     [Fact]
     public void False_should_have_message()

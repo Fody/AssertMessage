@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-public class XunitTests : IntegrationTestsBase<Xunit.Sdk.AssertException>
+public class XunitTests : IntegrationTestsBase
 {
     [Fact]
     public void True_should_have_message()

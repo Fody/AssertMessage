@@ -1,16 +1,21 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Fody;
+#pragma warning disable 618
 
-public abstract class IntegrationTestsBase<TException>
-    where TException : Exception
+public abstract class IntegrationTestsBase
 {
-    Type type;
+    static TestResult testResult;
 
-    public IntegrationTestsBase()
+    static IntegrationTestsBase()
     {
-        var testType = GetType().FullName.Replace("Tests.", "AssemblyToProcess.")+ "Target";
-        type = AssemblyLoader.Assembly.GetType(testType);
+        var weavingTask = new ModuleWeaver();
+
+        testResult = weavingTask.ExecuteTestRun("AssemblyToProcess.dll",
+            assemblyName: "IntegrationTestsBase",
+            ignoreCodes: new List<string> { "0x80131869" });
     }
 
     protected void CheckIfMessageIsValid(string message, [CallerMemberName] string memberName = "")
@@ -26,6 +31,8 @@ public abstract class IntegrationTestsBase<TException>
 
     string CallTestMethod(string memberName)
     {
+        var name = GetType().Name + "Target";
+        var type = testResult.Assembly.GetType(name);
         var test = Activator.CreateInstance(type);
         var method = test.GetType().GetMethod(memberName);
         Assert.NotNull(method, "Invalid test name: {0}", memberName);

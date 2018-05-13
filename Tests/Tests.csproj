@@ -71,9 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyLoader.cs" />
     <Compile Include="DebugTests.cs" />
-    <Compile Include="MockAssemblyResolver.cs" />
     <Compile Include="XunitTests.cs" />
     <Compile Include="MstestTests.cs" />
     <Compile Include="IntegrationTestsBase.cs" />
@@ -85,6 +83,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AssemblyToProcess\AssemblyToProcess.csproj">
+      <Project>{01a80013-7b32-487c-863a-89fbd0020471}</Project>
+      <Name>AssemblyToProcess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AssertMessage.Fody\AssertMessage.Fody.csproj">
       <Project>{C3578A7B-09A6-4444-9383-0DEAFA4958BD}</Project>
       <Name>AssertMessage.Fody</Name>

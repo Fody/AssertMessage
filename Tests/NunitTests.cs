@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Xunit;
 
-public class NunitTests : IntegrationTestsBase<AssertionException>
+public class NunitTests : IntegrationTestsBase
 {
     [Fact]
     public void StringContains_should_have_message()

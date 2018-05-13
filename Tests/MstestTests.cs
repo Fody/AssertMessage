@@ -1,7 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xunit;
+﻿using Xunit;
 
-public class MstestTests : IntegrationTestsBase<AssertFailedException>
+public class MstestTests : IntegrationTestsBase
 {
     [Fact]
     public void StringContains_should_have_message()
