@@ -21,7 +21,8 @@ public abstract class IntegrationTestsBase
 
     protected void CheckIfMessageIsValid(string message, [CallerMemberName] string memberName = "")
     {
-        CheckIfMessageIsValid(assertionMessage => Assert.Contains(message, assertionMessage), memberName);
+        var assertionMessage = CallTestMethod(memberName);
+        Assert.Contains(message, assertionMessage);
     }
 
     protected void CheckIfMessageIsValid(Action<string> action, [CallerMemberName] string memberName = "")
