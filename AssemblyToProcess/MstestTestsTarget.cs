@@ -51,7 +51,7 @@ public class MstestTestsTarget
         return null;
     }
 
-    public string AreEqual_should_have_message_original_formated_message()
+    public string AreEqual_should_have_message_original_formatted_message()
     {
         var expected = 1;
         var actual = 2;

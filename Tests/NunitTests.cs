@@ -38,7 +38,7 @@ public class NunitTests : IntegrationTestsBase<AssertionException>
     }
 
     [Fact]
-    public void AreEqual_should_have_message_original_formated_message()
+    public void AreEqual_should_have_message_original_formatted_message()
     {
         CheckIfMessageIsValid(message =>
         {
