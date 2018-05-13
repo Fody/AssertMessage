@@ -1,16 +1,17 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
+using Xunit;
 
 [TestFixture]
 public class MstestTests : IntegrationTestsBase<AssertFailedException>
 {
-    [Test]
+    [Fact]
     public void StringContains_should_have_message()
     {
         CheckIfMessageIsValid("StringAssert.Contains(\"test\", actual);");
     }
 
-    [Test]
+    [Fact]
     public void AreEqual_should_have_message_original_formated_message()
     {
         CheckIfMessageIsValid(message =>
