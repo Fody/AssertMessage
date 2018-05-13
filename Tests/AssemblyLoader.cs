@@ -7,7 +7,7 @@ class AssemblyLoader
     static AssemblyLoader()
     {
         var basePath = Path.GetDirectoryName(typeof(AssemblyLoader).Assembly.Location);
-        var beforeAssemblyPath = Path.GetFullPath(basePath + @"\..\..\..\AssemblyToProcess\bin\Debug\AssemblyToProcess.dll");
+        var beforeAssemblyPath = Path.GetFullPath(basePath + @"\..\..\..\AssemblyToProcess\bin\Debug\net462\AssemblyToProcess.dll");
 #if (!DEBUG)
 
         beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");
