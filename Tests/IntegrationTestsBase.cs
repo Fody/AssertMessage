@@ -31,7 +31,7 @@ public abstract class IntegrationTestsBase
         action(message);
     }
 
-    string CallTestMethod(string memberName)
+    protected string CallTestMethod([CallerMemberName] string memberName = "")
     {
         var name = GetType().Name + "Target";
         var type = testResult.Assembly.GetType(name);

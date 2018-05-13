@@ -5,25 +5,29 @@ public class NunitTests : IntegrationTestsBase
     [Fact]
     public void StringContains_should_have_message()
     {
-        CheckIfMessageIsValid("StringAssert.Contains(\"test\", actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("StringAssert.Contains(\"test\", actual);", assertionMessage);
     }
 
     [Fact]
     public void AreEqual_should_have_message_for_object()
     {
-        CheckIfMessageIsValid("Assert.AreEqual(expected, actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.AreEqual(expected, actual);", assertionMessage);
     }
 
     [Fact]
     public void AreEqual_should_have_message_for_int()
     {
-        CheckIfMessageIsValid("Assert.AreEqual(expected, actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.AreEqual(expected, actual);", assertionMessage);
     }
 
     [Fact]
     public void AreNotEqual_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.AreNotEqual(expected, actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.AreNotEqual(expected, actual);", assertionMessage);
     }
 
     [Fact]
@@ -49,42 +53,49 @@ public class NunitTests : IntegrationTestsBase
     [Fact]
     public void Contains_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.Contains(expected, collection);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.Contains(expected, collection);", assertionMessage);
     }
 
     [Fact]
     public void IsTrue_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.IsTrue(actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.IsTrue(actual);", assertionMessage);
     }
 
     [Fact]
     public void False_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.False(actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.False(actual);", assertionMessage);
     }
 
     [Fact]
     public void IsEmpty_should_have_message_for_collection()
     {
-        CheckIfMessageIsValid("Assert.IsEmpty(actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.IsEmpty(actual);", assertionMessage);
     }
 
     [Fact]
     public void IsInstanceOf_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.IsInstanceOf<int>(actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.IsInstanceOf<int>(actual);", assertionMessage);
     }
 
     [Fact]
     public void Throws_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.Throws<Exception>(action);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.Throws<Exception>(action);", assertionMessage);
     }
 
     [Fact]
     public void Fail_should_have_message()
     {
-        CheckIfMessageIsValid("Assert.Fail();");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Assert.Fail();", assertionMessage);
     }
 }

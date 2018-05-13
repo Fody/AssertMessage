@@ -6,13 +6,15 @@ public class DebugTests : IntegrationTestsBase
     [Fact]
     public void False_should_have_message()
     {
-        CheckIfMessageIsValid("Debug.Assert(actual);");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("Debug.Assert(actual);", assertionMessage);
     }
 
     [Fact]
     public void False_should_have_original_message()
     {
-        CheckIfMessageIsValid("original");
+        var assertionMessage = CallTestMethod();
+        Assert.Contains("original", assertionMessage);
     }
 }
 #endif
