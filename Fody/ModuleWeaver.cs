@@ -6,11 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Fody;
 
-public class ModuleWeaver
+public class ModuleWeaver: BaseModuleWeaver
 {
     const string AssemblyName = "AssertionMessage";
-
-    public ModuleDefinition ModuleDefinition { get; set; }
 
     ISequencePointExtrator sequencePointExtrator;
 
@@ -31,13 +29,16 @@ public class ModuleWeaver
             .ToList();
     }
 
-    public void Execute()
+    public override void Execute()
     {
         SelectActiveProcessors();
 
         AnalyzeTypes();
+    }
 
-        RemoveReference();
+    public override IEnumerable<string> GetAssembliesForScanning()
+    {
+        yield break;
     }
 
     void SelectActiveProcessors()
@@ -134,12 +135,5 @@ public class ModuleWeaver
         return (ins.OpCode == OpCodes.Callvirt || ins.OpCode == OpCodes.Call) && methodReference != null;
     }
 
-    void RemoveReference()
-    {
-        var referenceToRemove = ModuleDefinition.AssemblyReferences.FirstOrDefault(x => x.Name == AssemblyName);
-        if (referenceToRemove != null)
-        {
-            ModuleDefinition.AssemblyReferences.Remove(referenceToRemove);
-        }
-    }
+    public override bool ShouldCleanReference => true;
 }
