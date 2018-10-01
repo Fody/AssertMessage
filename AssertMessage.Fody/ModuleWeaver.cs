@@ -97,6 +97,8 @@ public class ModuleWeaver: BaseModuleWeaver
         var toAdd = new List<InstructionToInsert>();
         SequencePoint lastSequencePoint = null;
 
+        var branchTargetFixups = new Dictionary<Instruction, Instruction>();
+
         foreach (var ins in instructions)
         {
             lastSequencePoint = method.DebugInformation.GetSequencePoint(ins) ?? lastSequencePoint;
@@ -110,6 +112,7 @@ public class ModuleWeaver: BaseModuleWeaver
                 {
                     var newInstruction = GenerateNewCode(index, lastSequencePoint, ins, newMethod);
                     toAdd.Add(newInstruction);
+                    branchTargetFixups[ins] = newInstruction.Instruction;
                     index++;
                     var lastType = newMethod.Parameters.Last().ParameterType;
                     if (lastType.FullName == "System.Object[]")
@@ -121,6 +124,14 @@ public class ModuleWeaver: BaseModuleWeaver
             }
 
             index++;
+        }
+
+        foreach (var ins in instructions)
+        {
+            if (ins.Operand is Instruction oldTarget && branchTargetFixups.TryGetValue(oldTarget, out var newTarget))
+            {
+                ins.Operand = newTarget;
+            }
         }
 
         return toAdd;
