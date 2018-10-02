@@ -1,12 +1,12 @@
-﻿using Mono.Cecil;
-using Mono.Cecil.Cil;
-using Mono.Cecil.Rocks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fody;
+using Mono.Cecil;
+using Mono.Cecil.Cil;
+using Mono.Cecil.Rocks;
 
-public class ModuleWeaver: BaseModuleWeaver
+public class ModuleWeaver : BaseModuleWeaver
 {
     const string AssemblyName = "AssertionMessage";
 
@@ -25,7 +25,7 @@ public class ModuleWeaver: BaseModuleWeaver
             .Assembly
             .GetTypes()
             .Where(x => typeof(IProcessor).IsAssignableFrom(x) && !x.IsAbstract)
-            .Select(x => (IProcessor) x.GetConstructor(new Type[0]).Invoke(new object[0]))
+            .Select(x => (IProcessor)x.GetConstructor(new Type[0]).Invoke(new object[0]))
             .ToList();
     }
 
@@ -131,6 +131,14 @@ public class ModuleWeaver: BaseModuleWeaver
             if (ins.Operand is Instruction oldTarget && branchTargetFixups.TryGetValue(oldTarget, out var newTarget))
             {
                 ins.Operand = newTarget;
+            }
+        }
+
+        foreach (var @try in method.Body.ExceptionHandlers)
+        {
+            if (branchTargetFixups.TryGetValue(@try.TryStart, out var newTryStart))
+            {
+                @try.TryStart = newTryStart;
             }
         }
 
