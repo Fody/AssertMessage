@@ -34,12 +34,9 @@ public class ComplexBranchingTestsTarget
         Method1(ref data, 45);
     }
 
-    List<string> Method2(string a_path, string a_searchPattern)
+    List<string> Method2(string a_searchPattern)
     {
-        Assert.AreEqual(@"C:\Data\Label Forms\ASDFSADF", a_path);
-        Assert.IsNotNull(a_searchPattern);
-
-        if (a_searchPattern == "*" || a_searchPattern == "*.*")
+        if (a_searchPattern == "*")
         {
             return new List<string>();
         }
@@ -52,6 +49,6 @@ public class ComplexBranchingTestsTarget
 
     public void TestMethod2()
     {
-        Method2(@"C:\Data\Label Forms\ASDFSADF", "*.*");
+        Method2("*");
     }
 }
