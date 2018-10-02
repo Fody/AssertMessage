@@ -41,10 +41,10 @@ public class ComplexBranchingTestsTarget
             return new List<string>();
         }
         else
-        {
+            // No curly braces here. The compiler turns them into nops in debug mode, and this needs a branch instruction that jumps directly to a call.
             Assert.Fail();
-            return null;
-        }
+
+        return null;
     }
 
     public void TestMethod2()
