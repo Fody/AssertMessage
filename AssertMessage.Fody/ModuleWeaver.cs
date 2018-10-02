@@ -1,12 +1,12 @@
-﻿using Mono.Cecil;
-using Mono.Cecil.Cil;
-using Mono.Cecil.Rocks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fody;
+using Mono.Cecil;
+using Mono.Cecil.Cil;
+using Mono.Cecil.Rocks;
 
-public class ModuleWeaver: BaseModuleWeaver
+public class ModuleWeaver : BaseModuleWeaver
 {
     const string AssemblyName = "AssertionMessage";
 
@@ -25,7 +25,7 @@ public class ModuleWeaver: BaseModuleWeaver
             .Assembly
             .GetTypes()
             .Where(x => typeof(IProcessor).IsAssignableFrom(x) && !x.IsAbstract)
-            .Select(x => (IProcessor) x.GetConstructor(new Type[0]).Invoke(new object[0]))
+            .Select(x => (IProcessor)x.GetConstructor(new Type[0]).Invoke(new object[0]))
             .ToList();
     }
 
@@ -78,9 +78,15 @@ public class ModuleWeaver: BaseModuleWeaver
 
             var toInsert = GetInstructionsToInsert(instructions, method);
 
-            foreach (var instruction in toInsert)
+            if (toInsert.Any())
             {
-                instructions.Insert(instruction.Position, instruction.Instruction);
+                method.Body.SimplifyMacros();
+                foreach (var instruction in toInsert)
+                {
+                    instructions.Insert(instruction.Position, instruction.Instruction);
+                }
+                method.Body.OptimizeMacros();
+
             }
         }
     }
@@ -90,6 +96,8 @@ public class ModuleWeaver: BaseModuleWeaver
         var index = 0;
         var toAdd = new List<InstructionToInsert>();
         SequencePoint lastSequencePoint = null;
+
+        var branchTargetFixups = new Dictionary<Instruction, Instruction>();
 
         foreach (var ins in instructions)
         {
@@ -104,6 +112,7 @@ public class ModuleWeaver: BaseModuleWeaver
                 {
                     var newInstruction = GenerateNewCode(index, lastSequencePoint, ins, newMethod);
                     toAdd.Add(newInstruction);
+                    branchTargetFixups[ins] = newInstruction.Instruction;
                     index++;
                     var lastType = newMethod.Parameters.Last().ParameterType;
                     if (lastType.FullName == "System.Object[]")
@@ -117,6 +126,32 @@ public class ModuleWeaver: BaseModuleWeaver
             index++;
         }
 
+        foreach (var ins in instructions)
+        {
+            if (ins.Operand is Instruction oldTarget && branchTargetFixups.TryGetValue(oldTarget, out var newTarget))
+            {
+                ins.Operand = newTarget;
+            }
+            else if (ins.Operand is Instruction[] targets)
+            {
+                for (var i = 0; i < targets.Length; i++)
+                {
+                    if (branchTargetFixups.TryGetValue(targets[i], out newTarget))
+                    {
+                        targets[i] = newTarget;
+                    }
+                }
+            }
+        }
+
+        foreach (var @try in method.Body.ExceptionHandlers)
+        {
+            if (branchTargetFixups.TryGetValue(@try.TryStart, out var newTryStart))
+            {
+                @try.TryStart = newTryStart;
+            }
+        }
+
         return toAdd;
     }
 
@@ -126,8 +161,7 @@ public class ModuleWeaver: BaseModuleWeaver
         ins.Operand = imported;
         var source = sequencePointExtrator.GetSourceCode(lastSequencePoint);
         var loadString = Instruction.Create(OpCodes.Ldstr, source);
-        var newInstruction = new InstructionToInsert(index, loadString);
-        return newInstruction;
+        return new InstructionToInsert(index, loadString);
     }
 
     static bool IsValidInstruction(Instruction ins, MethodReference methodReference)

@@ -48,15 +48,10 @@ public abstract class ProcessorBase : IProcessor
     {
         var resolved = methodReference.Resolve();
         var name = resolved.DeclaringType.Name;
-        if (!resolved.IsStatic || !name.EndsWith("Assert"))
-        {
-            return false;
-        }
-
-        return true;
+        return resolved.IsStatic && name.EndsWith("Assert");
     }
 
-    protected virtual bool HasMessage(MethodReference methodReference)
+    protected bool HasMessage(MethodReference methodReference)
     {
         var parameters = methodReference.Parameters;
         if (parameters.Count >= 2)
@@ -73,8 +68,7 @@ public abstract class ProcessorBase : IProcessor
             }
         }
 
-        var found = parameters.Any(x => x.Name == "message" || x.Name == "userMessage");
-        return found;
+        return parameters.Any(x => x.Name == "message" || x.Name == "userMessage");
     }
 
     static MethodReference GetGenericMethod(MethodDefinition newMethod, GenericInstanceMethod genericMethod)
