@@ -25,6 +25,9 @@ public class ComplexBranchingTestsTarget
                 Assert.AreEqual("testLine4", a_toSplit);
                 Assert.AreEqual(45, a_lineLength);
                 break;
+            case 4:
+                Assert.Fail();
+                break;
         }
     }
 
@@ -41,10 +44,10 @@ public class ComplexBranchingTestsTarget
             return new List<string>();
         }
         else
-        {
+            // No curly braces here. The compiler turns them into nops in debug mode, and this needs a branch instruction that jumps directly to a call.
             Assert.Fail();
-            return null;
-        }
+
+        return null;
     }
 
     public void TestMethod2()
