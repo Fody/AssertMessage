@@ -78,9 +78,15 @@ public class ModuleWeaver: BaseModuleWeaver
 
             var toInsert = GetInstructionsToInsert(instructions, method);
 
-            foreach (var instruction in toInsert)
+            if (toInsert.Any())
             {
-                instructions.Insert(instruction.Position, instruction.Instruction);
+                method.Body.SimplifyMacros();
+                foreach (var instruction in toInsert)
+                {
+                    instructions.Insert(instruction.Position, instruction.Instruction);
+                }
+                method.Body.OptimizeMacros();
+
             }
         }
     }
@@ -126,8 +132,7 @@ public class ModuleWeaver: BaseModuleWeaver
         ins.Operand = imported;
         var source = sequencePointExtrator.GetSourceCode(lastSequencePoint);
         var loadString = Instruction.Create(OpCodes.Ldstr, source);
-        var newInstruction = new InstructionToInsert(index, loadString);
-        return newInstruction;
+        return new InstructionToInsert(index, loadString);
     }
 
     static bool IsValidInstruction(Instruction ins, MethodReference methodReference)
