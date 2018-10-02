@@ -132,6 +132,16 @@ public class ModuleWeaver : BaseModuleWeaver
             {
                 ins.Operand = newTarget;
             }
+            else if (ins.Operand is Instruction[] targets)
+            {
+                for (var i = 0; i < targets.Length; i++)
+                {
+                    if (branchTargetFixups.TryGetValue(targets[i], out newTarget))
+                    {
+                        targets[i] = newTarget;
+                    }
+                }
+            }
         }
 
         foreach (var @try in method.Body.ExceptionHandlers)
