@@ -25,6 +25,9 @@ public class ComplexBranchingTestsTarget
                 Assert.AreEqual("testLine4", a_toSplit);
                 Assert.AreEqual(45, a_lineLength);
                 break;
+            case 4:
+                Assert.Fail();
+                break;
         }
     }
 
