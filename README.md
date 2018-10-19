@@ -8,9 +8,10 @@
 Adds 'message' parameter to Assertions. It is generated from source code.
 
 Supported frameworks:
-- Nunit
-- Mstest
-- Xunit
+
+ * Nunit
+ * Mstest
+ * Xunit
 
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage).
 
@@ -19,12 +20,12 @@ Supported frameworks:
 
 Install the [AssertMessage.Fody NuGet package](https://nuget.org/packages/AssertMessage.Fody/) and update the [Fody NuGet package](https://nuget.org/packages/Fody/):
 
-```
+```powershell
+PM> Install-Package Fody
 PM> Install-Package AssertMessage.Fody
-PM> Update-Package Fody
 ```
 
-The `Update-Package Fody` is required since NuGet always defaults to the oldest, and most buggy, version of any dependency.
+The `Install-Package Fody` is required since NuGet always defaults to the oldest, and most buggy, version of any dependency.
 
 
 ### Add to FodyWeavers.xml
