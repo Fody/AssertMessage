@@ -8,8 +8,6 @@ using Mono.Cecil.Rocks;
 
 public class ModuleWeaver : BaseModuleWeaver
 {
-    const string AssemblyName = "AssertionMessage";
-
     ISequencePointExtrator sequencePointExtrator;
 
     List<IProcessor> allProcessors;
