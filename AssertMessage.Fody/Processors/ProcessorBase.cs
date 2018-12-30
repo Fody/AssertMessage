@@ -20,7 +20,8 @@ public abstract class ProcessorBase : IProcessor
         var parameters = methodReference.Parameters;
         var newParameters = new List<string>(parameters.Select(x => x.ParameterType.IsGenericParameter ? "T" : x.ParameterType.Name)) {"String"};
 
-        var newMethod = methodReference.DeclaringType.Resolve().FindMethod(methodReference.Name, newParameters.ToArray());
+        var typeDefinition = methodReference.DeclaringType.Resolve();
+        var newMethod = typeDefinition.FindMethod(methodReference.Name, newParameters.ToArray());
         if (newMethod == null)
         {
             newParameters = new List<string>(parameters.Select(x => x.ParameterType.IsGenericParameter ? "T" : x.ParameterType.Name))
@@ -28,7 +29,7 @@ public abstract class ProcessorBase : IProcessor
                 "String",
                 "Object[]"
             };
-            newMethod = methodReference.DeclaringType.Resolve().FindMethod(methodReference.Name, newParameters.ToArray());
+            newMethod = typeDefinition.FindMethod(methodReference.Name, newParameters.ToArray());
         }
 
         if (newMethod == null)
