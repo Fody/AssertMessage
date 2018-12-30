@@ -70,23 +70,24 @@ public class ModuleWeaver : BaseModuleWeaver
 
     void AnalyzeMethod(MethodDefinition method)
     {
-        if (method.HasBody)
+        if (!method.HasBody)
         {
-            var instructions = method.Body.Instructions;
-
-            var toInsert = GetInstructionsToInsert(instructions, method);
-
-            if (toInsert.Any())
-            {
-                method.Body.SimplifyMacros();
-                foreach (var instruction in toInsert)
-                {
-                    instructions.Insert(instruction.Position, instruction.Instruction);
-                }
-                method.Body.OptimizeMacros();
-
-            }
+            return;
         }
+        var instructions = method.Body.Instructions;
+
+        var toInsert = GetInstructionsToInsert(instructions, method);
+
+        if (!toInsert.Any())
+        {
+            return;
+        }
+        method.Body.SimplifyMacros();
+        foreach (var instruction in toInsert)
+        {
+            instructions.Insert(instruction.Position, instruction.Instruction);
+        }
+        method.Body.OptimizeMacros();
     }
 
     List<InstructionToInsert> GetInstructionsToInsert(ICollection<Instruction> instructions, MethodDefinition method)
