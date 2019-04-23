@@ -5,9 +5,8 @@ using Fody;
 using Xunit;
 using Xunit.Abstractions;
 
-#pragma warning disable 618
-
-public abstract class IntegrationTestsBase: TestBase
+public abstract class IntegrationTestsBase :
+    XunitLoggingBase
 {
     static TestResult testResult;
 
@@ -17,7 +16,7 @@ public abstract class IntegrationTestsBase: TestBase
 
         testResult = weavingTask.ExecuteTestRun("AssemblyToProcess.dll",
             assemblyName: "IntegrationTestsBase",
-            ignoreCodes: new List<string> { "0x80131869" });
+            ignoreCodes: new List<string> {"0x80131869"});
     }
 
     protected string CallTestMethod([CallerMemberName] string memberName = "")
@@ -28,10 +27,11 @@ public abstract class IntegrationTestsBase: TestBase
         var method = test.GetType().GetMethod(memberName);
         Assert.NotNull(method);
 
-        return (string )method.Invoke(test, new object[0]);
+        return (string) method.Invoke(test, new object[0]);
     }
 
-    protected IntegrationTestsBase(ITestOutputHelper output) : base(output)
+    protected IntegrationTestsBase(ITestOutputHelper output) : 
+        base(output)
     {
     }
 }

@@ -1,7 +1,8 @@
 ﻿using Xunit;
 using Xunit.Abstractions;
 
-public class ComplexBranchingTests : IntegrationTestsBase
+public class ComplexBranchingTests : 
+    IntegrationTestsBase
 {
     [Fact]
     public void TestMethod1()
@@ -15,7 +16,8 @@ public class ComplexBranchingTests : IntegrationTestsBase
         CallTestMethod();
     }
 
-    public ComplexBranchingTests(ITestOutputHelper output) : base(output)
+    public ComplexBranchingTests(ITestOutputHelper output) :
+        base(output)
     {
     }
 }

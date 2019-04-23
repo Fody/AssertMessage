@@ -2,7 +2,8 @@
 using Xunit;
 using Xunit.Abstractions;
 
-public class DebugTests : IntegrationTestsBase
+public class DebugTests : 
+    IntegrationTestsBase
 {
     [Fact]
     public void False_should_have_message()
@@ -18,7 +19,8 @@ public class DebugTests : IntegrationTestsBase
         Assert.Contains("original", assertionMessage);
     }
 
-    public DebugTests(ITestOutputHelper output) : base(output)
+    public DebugTests(ITestOutputHelper output) :
+        base(output)
     {
     }
 }
