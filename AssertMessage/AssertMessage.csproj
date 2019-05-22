@@ -9,7 +9,7 @@
     <PackageTags>Assert, message, Fody, Cecil, Nunit, Xunit, mstest</PackageTags>
     <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
     <PackageIconUrl>https://raw.githubusercontent.com/Fody/AssertMessage/master/package_icon.png</PackageIconUrl>
-    <PackageProjectUrl>http://github.com/Fody/AssertMessage</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Fody/AssertMessage</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <ItemGroup>
