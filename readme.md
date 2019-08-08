@@ -67,9 +67,9 @@ public void CustomerTest()
 
 ## Pdb files
 
-The Pbd files are required for this plugin. To make it work in Release, please enable Debug Info(pdbonly) in Advanced Build Settings Dialog Box. [More info](https://msdn.microsoft.com/en-us/library/s4wcexbc.aspx)
+The Pbd files are required for this plugin. To make it work in Release, enable Debug Info(pdbonly) in Advanced Build Settings Dialog Box. [More info](https://msdn.microsoft.com/en-us/library/s4wcexbc.aspx)
 
 
 ## Icon
 
-Message by Prerak Patel from [The Noun Project](http://thenounproject.com)
+Message by [Prerak Patel(https://thenounproject.com/prerakpatel/) from [The Noun Project](https://thenounproject.com)
