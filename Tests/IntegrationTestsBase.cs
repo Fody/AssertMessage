@@ -6,7 +6,7 @@ using Xunit;
 using Xunit.Abstractions;
 
 public abstract class IntegrationTestsBase :
-    XunitLoggingBase
+    XunitApprovalBase
 {
     static TestResult testResult;
 
