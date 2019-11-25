@@ -1,7 +1,7 @@
 ﻿using Xunit;
 using Xunit.Abstractions;
 
-public class ComplexBranchingTests : 
+public class ComplexBranchingTests :
     IntegrationTestsBase
 {
     [Fact]

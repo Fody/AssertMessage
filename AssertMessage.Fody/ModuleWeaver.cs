@@ -6,7 +6,8 @@ using Mono.Cecil;
 using Mono.Cecil.Cil;
 using Mono.Cecil.Rocks;
 
-public class ModuleWeaver : BaseModuleWeaver
+public class ModuleWeaver :
+    BaseModuleWeaver
 {
     ISequencePointExtrator sequencePointExtrator;
 
