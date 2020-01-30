@@ -1,19 +1,25 @@
+# <img src="/package_icon.png" height="30px"> AssertMessage.Fody
+
 [![Chat on Gitter](https://img.shields.io/gitter/room/fody/fody.svg)](https://gitter.im/Fody/Fody)
 [![NuGet Status](https://img.shields.io/nuget/v/AssertMessage.Fody.svg)](https://www.nuget.org/packages/AssertMessage.Fody/)
 
-## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
-
-![Icon](https://raw.githubusercontent.com/Fody/AssertMessage/master/package_icon.png)
-
 Adds 'message' parameter to Assertions. It is generated from source code.
+
+
+## This is an add-in for [Fody](https://github.com/Fody/Fody/)
+
+**It is expected that all developers using Fody either [become a Patron on OpenCollective](https://opencollective.com/fody/), or have a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-fody?utm_source=nuget-fody&utm_medium=referral&utm_campaign=enterprise).**
+
+
+## Usage
+
+See also [Fody usage](https://github.com/Fody/Home/blob/master/pages/usage.md).
 
 Supported frameworks:
 
  * Nunit
  * Mstest
  * Xunit
-
-[Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage).
 
 
 ### NuGet installation
@@ -39,7 +45,7 @@ Add `<AssertMessage/>` to [FodyWeavers.xml](https://github.com/Fody/Fody#add-fod
 </Weavers>
 ```
 
-## Your Code
+### Your Code
 
 ```csharp
 public void CustomerTest()
@@ -52,7 +58,7 @@ public void CustomerTest()
 ```
 
 
-## What gets compiled
+### What gets compiled
 
 ```csharp
 public void CustomerTest()
@@ -65,7 +71,7 @@ public void CustomerTest()
 ```
 
 
-## Pdb files
+### Pdb files
 
 The Pbd files are required for this plugin. To make it work in Release, enable Debug Info(pdbonly) in Advanced Build Settings Dialog Box. [More info](https://msdn.microsoft.com/en-us/library/s4wcexbc.aspx)
 
