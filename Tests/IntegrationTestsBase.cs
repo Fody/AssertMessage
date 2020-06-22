@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Fody;
-using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public abstract class IntegrationTestsBase :
-    VerifyBase
+public abstract class IntegrationTestsBase
 {
     static TestResult testResult;
 
@@ -29,10 +26,5 @@ public abstract class IntegrationTestsBase :
         Assert.NotNull(method);
 
         return (string) method.Invoke(test, new object[0]);
-    }
-
-    protected IntegrationTestsBase(ITestOutputHelper output) :
-        base(output)
-    {
     }
 }

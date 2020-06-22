@@ -1,5 +1,4 @@
 ﻿using Xunit;
-using Xunit.Abstractions;
 
 public class MstestTests : IntegrationTestsBase
 {
@@ -87,9 +86,5 @@ public class MstestTests : IntegrationTestsBase
     {
         var assertionMessage = CallTestMethod();
         Assert.Contains("Assert.Fail();", assertionMessage);
-    }
-
-    public MstestTests(ITestOutputHelper output) : base(output)
-    {
     }
 }
