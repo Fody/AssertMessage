@@ -9,7 +9,7 @@
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
-    <PackageReference Include="Verify.Xunit" Version="6.22.1" />
+    <PackageReference Include="Verify.Xunit" Version="6.23.0" />
     <ProjectReference Include="..\AssemblyToProcess\AssemblyToProcess.csproj" />
     <ProjectReference Include="..\AssertMessage.Fody\AssertMessage.Fody.csproj" />
     <Reference Include="Microsoft.CSharp" />
