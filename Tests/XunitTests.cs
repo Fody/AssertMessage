@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-public class XunitTests :
+﻿public class XunitTests :
     IntegrationTestsBase
 {
     [Fact]

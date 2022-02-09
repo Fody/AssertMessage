@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-public class MstestTests : IntegrationTestsBase
+﻿public class MstestTests : IntegrationTestsBase
 {
     [Fact]
     public void StringContains_should_have_message()

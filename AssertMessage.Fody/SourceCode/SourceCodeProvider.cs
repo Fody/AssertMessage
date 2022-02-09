@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-public class SourceCodeProvider : ISourceCodeProvider
+﻿public class SourceCodeProvider : ISourceCodeProvider
 {
-    Dictionary<string, string[]> filesCache = new Dictionary<string, string[]>();
+    Dictionary<string, string[]> filesCache = new();
 
     public string[] GetSourceCode(string path)
     {

@@ -1,6 +1,4 @@
 ﻿using Mono.Cecil;
-using System.Collections.Generic;
-using System.Linq;
 
 public abstract class ProcessorBase : IProcessor
 {
@@ -69,7 +67,7 @@ public abstract class ProcessorBase : IProcessor
             }
         }
 
-        return parameters.Any(x => x.Name == "message" || x.Name == "userMessage");
+        return parameters.Any(x => x.Name is "message" or "userMessage");
     }
 
     static MethodReference GetGenericMethod(MethodDefinition newMethod, GenericInstanceMethod genericMethod)

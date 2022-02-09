@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-public class NunitTests : IntegrationTestsBase
+﻿public class NunitTests : IntegrationTestsBase
 {
     [Fact]
     public void StringContains_should_have_message()

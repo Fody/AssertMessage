@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-public class ComplexBranchingTests :
+﻿public class ComplexBranchingTests :
     IntegrationTestsBase
 {
     [Fact]
