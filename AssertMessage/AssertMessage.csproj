@@ -16,6 +16,6 @@
     <Using Remove="System.Net.Http" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Fody" Version="6.6.1" PrivateAssets="none" />
-    <PackageReference Include="FodyPackaging" Version="6.6.1" PrivateAssets="All" />
+    <PackageReference Include="FodyPackaging" Version="6.6.2" PrivateAssets="All" />
   </ItemGroup>
 </Project>
