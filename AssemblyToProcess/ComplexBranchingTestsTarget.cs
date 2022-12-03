@@ -36,15 +36,15 @@ public class ComplexBranchingTestsTarget
         Method1(ref data, 45);
     }
 
-    List<string> Method2(string a_searchPattern)
+    static List<string> Method2(string a_searchPattern)
     {
         if (a_searchPattern == "*")
         {
             return new List<string>();
         }
-        else
-            // No curly braces here. The compiler turns them into nops in debug mode, and this needs a branch instruction that jumps directly to a call.
-            Assert.Fail();
+
+        // No curly braces here. The compiler turns them into nops in debug mode, and this needs a branch instruction that jumps directly to a call.
+        Assert.Fail();
 
         return null;
     }
