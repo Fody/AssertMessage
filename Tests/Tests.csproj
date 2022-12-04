@@ -12,6 +12,6 @@
     <PackageReference Include="Verify.Xunit" Version="19.3.0" />
     <ProjectReference Include="..\AssemblyToProcess\AssemblyToProcess.csproj" />
     <ProjectReference Include="..\AssertMessage.Fody\AssertMessage.Fody.csproj" />
-    <Reference Include="Microsoft.CSharp" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
 </Project>
