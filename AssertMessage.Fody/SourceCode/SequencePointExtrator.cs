@@ -54,6 +54,6 @@ public class SequencePointExtrator : ISequencePointExtrator
             list.Add(lastLine);
         }
 
-        return string.Join(' ', list.Select(_ => _.Trim()));
+        return string.Join(" ", list.Select(x => x.Trim()));
     }
 }
