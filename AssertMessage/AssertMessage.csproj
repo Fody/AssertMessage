@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net452;netstandard1.0</TargetFrameworks>
@@ -16,6 +16,6 @@
     <Using Remove="System.Net.Http" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Fody" Version="6.6.4" PrivateAssets="none" />
-    <PackageReference Include="FodyPackaging" Version="6.6.4" PrivateAssets="All" />
+    <PackageReference Include="FodyPackaging" Version="6.7.0" PrivateAssets="All" />
   </ItemGroup>
 </Project>
