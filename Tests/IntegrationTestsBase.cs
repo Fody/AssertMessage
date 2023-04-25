@@ -22,6 +22,6 @@ public abstract class IntegrationTestsBase
         var method = test.GetType().GetMethod(memberName);
         Assert.NotNull(method);
 
-        return (string) method.Invoke(test, new object[0]);
+        return (string) method.Invoke(test, Array.Empty<object>());
     }
 }

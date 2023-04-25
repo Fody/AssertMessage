@@ -14,6 +14,6 @@ public class ErrorThrowingTraceListener : TraceListener
 
     public override void Fail(string message)
     {
-        throw new Exception(message);
+        throw new(message);
     }
 }

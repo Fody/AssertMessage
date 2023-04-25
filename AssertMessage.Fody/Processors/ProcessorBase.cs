@@ -22,7 +22,7 @@ public abstract class ProcessorBase : IProcessor
         var newMethod = typeDefinition.FindMethod(methodReference.Name, newParameters.ToArray());
         if (newMethod == null)
         {
-            newParameters = new List<string>(parameters.Select(x => x.ParameterType.IsGenericParameter ? "T" : x.ParameterType.Name))
+            newParameters = new(parameters.Select(x => x.ParameterType.IsGenericParameter ? "T" : x.ParameterType.Name))
             {
                 "String",
                 "Object[]"

@@ -16,12 +16,12 @@ public class ModuleWeaver :
     {
         var sourceCodeProvider = new SourceCodeProvider();
         sequencePointExtrator = new SequencePointExtrator(sourceCodeProvider);
-        processors = new List<IProcessor>();
+        processors = new();
         allProcessors = GetType()
             .Assembly
             .GetTypes()
             .Where(x => typeof(IProcessor).IsAssignableFrom(x) && !x.IsAbstract)
-            .Select(x => (IProcessor)x.GetConstructor(new Type[0]).Invoke(new object[0]))
+            .Select(x => (IProcessor)x.GetConstructor(new Type[0]).Invoke(Array.Empty<object>()))
             .ToList();
     }
 
@@ -114,7 +114,7 @@ public class ModuleWeaver :
                     var lastType = newMethod.Parameters.Last().ParameterType;
                     if (lastType.FullName == "System.Object[]")
                     {
-                        toAdd.Add(new InstructionToInsert(index, Instruction.Create(OpCodes.Ldnull)));
+                        toAdd.Add(new(index, Instruction.Create(OpCodes.Ldnull)));
                         index++;
                     }
                 }
@@ -158,7 +158,7 @@ public class ModuleWeaver :
         ins.Operand = imported;
         var source = sequencePointExtrator.GetSourceCode(lastSequencePoint);
         var loadString = Instruction.Create(OpCodes.Ldstr, source);
-        return new InstructionToInsert(index, loadString);
+        return new(index, loadString);
     }
 
     static bool IsValidInstruction(Instruction ins, MethodReference methodReference)

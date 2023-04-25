@@ -40,7 +40,7 @@ public class ComplexBranchingTestsTarget
     {
         if (a_searchPattern == "*")
         {
-            return new List<string>();
+            return new();
         }
 
         // No curly braces here. The compiler turns them into nops in debug mode, and this needs a branch instruction that jumps directly to a call.
