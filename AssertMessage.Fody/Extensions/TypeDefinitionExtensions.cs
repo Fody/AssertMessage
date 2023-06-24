@@ -7,6 +7,7 @@ static class TypeDefinitionExtensions
         string method,
         params string[] paramTypes)
     {
-        return typeDefinition.Methods.FirstOrDefault(x => x.Name == method && x.IsMatch(paramTypes));
+        return typeDefinition.Methods.FirstOrDefault(_ => _.Name == method &&
+                                                          _.IsMatch(paramTypes));
     }
 }

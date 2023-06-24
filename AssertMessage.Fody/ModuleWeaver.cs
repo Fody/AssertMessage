@@ -39,7 +39,7 @@ public class ModuleWeaver :
 
     void SelectActiveProcessors()
     {
-        processors = allProcessors.Where(x => x.IsValidForModule(ModuleDefinition)).ToList();
+        processors = allProcessors.Where(_ => _.IsValidForModule(ModuleDefinition)).ToList();
     }
 
     void AnalyzeTypes()
@@ -49,7 +49,7 @@ public class ModuleWeaver :
             return;
         }
 
-        foreach (var method in ModuleDefinition.GetTypes().SelectMany(x => x.GetMethods()))
+        foreach (var method in ModuleDefinition.GetTypes().SelectMany(_ => _.GetMethods()))
         {
             try
             {
@@ -103,7 +103,7 @@ public class ModuleWeaver :
             var methodReference = ins.Operand as MethodReference;
             if (IsValidInstruction(ins, methodReference))
             {
-                var processor = processors.FirstOrDefault(x => x.IsValidForMethod(methodReference));
+                var processor = processors.FirstOrDefault(_ => _.IsValidForMethod(methodReference));
                 var newMethod = processor?.GetAssertionMethodWithMessage(methodReference);
                 if (newMethod != null)
                 {

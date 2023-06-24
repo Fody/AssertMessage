@@ -16,13 +16,13 @@ public abstract class ProcessorBase : IProcessor
     public virtual MethodReference GetAssertionMethodWithMessage(MethodReference methodReference)
     {
         var parameters = methodReference.Parameters;
-        var newParameters = new List<string>(parameters.Select(x => x.ParameterType.IsGenericParameter ? "T" : x.ParameterType.Name)) {"String"};
+        var newParameters = new List<string>(parameters.Select(_ => _.ParameterType.IsGenericParameter ? "T" : _.ParameterType.Name)) {"String"};
 
         var typeDefinition = methodReference.DeclaringType.Resolve();
         var newMethod = typeDefinition.FindMethod(methodReference.Name, newParameters.ToArray());
         if (newMethod == null)
         {
-            newParameters = new(parameters.Select(x => x.ParameterType.IsGenericParameter ? "T" : x.ParameterType.Name))
+            newParameters = new(parameters.Select(_ => _.ParameterType.IsGenericParameter ? "T" : _.ParameterType.Name))
             {
                 "String",
                 "Object[]"
@@ -67,7 +67,7 @@ public abstract class ProcessorBase : IProcessor
             }
         }
 
-        return parameters.Any(x => x.Name is "message" or "userMessage");
+        return parameters.Any(_ => _.Name is "message" or "userMessage");
     }
 
     static MethodReference GetGenericMethod(MethodDefinition newMethod, GenericInstanceMethod genericMethod)
@@ -84,7 +84,7 @@ public abstract class ProcessorBase : IProcessor
 
     protected static bool IsReferenced(ModuleDefinition module, string assembly)
     {
-        return module.AssemblyReferences.Any(x => x.Name.Equals(assembly));
+        return module.AssemblyReferences.Any(_ => _.Name.Equals(assembly));
     }
 
     protected static bool IsTypeFrom(MethodReference methodReference, string name)
