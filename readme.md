@@ -5,6 +5,8 @@
 
 Adds 'message' parameter to Assertions. It is generated from source code.
 
+**See [Milestones](../../milestones?state=closed) for release notes.**
+
 
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/)
 
