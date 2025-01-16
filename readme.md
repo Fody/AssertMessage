@@ -1,6 +1,5 @@
 # <img src="/package_icon.png" height="30px"> AssertMessage.Fody
 
-[![Chat on Gitter](https://img.shields.io/gitter/room/fody/fody.svg)](https://gitter.im/Fody/Fody)
 [![NuGet Status](https://img.shields.io/nuget/v/AssertMessage.Fody.svg)](https://www.nuget.org/packages/AssertMessage.Fody/)
 
 Adds 'message' parameter to Assertions. It is generated from source code.
