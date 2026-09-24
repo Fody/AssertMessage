@@ -10,12 +10,12 @@
     <!-- pin patched versions of vulnerable transitive dependencies -->
     <PackageVersion Include="System.Private.Uri" Version="4.3.2" />
     <!-- the assertion frameworks are referenced by AssemblyToProcess because the weaver rewrites their assertions -->
-    <PackageVersion Include="MSTest.TestFramework" Version="3.2.0" />
-    <PackageVersion Include="NUnit" Version="3.14.0" />
-    <PackageVersion Include="xunit" Version="2.6.4" />
-    <PackageVersion Include="Fody" Version="6.8.0" />
-    <PackageVersion Include="FodyHelpers" Version="6.8.0" />
-    <PackageVersion Include="FodyPackaging" Version="6.8.0" />
+    <PackageVersion Include="MSTest.TestFramework" Version="4.4.1" />
+    <PackageVersion Include="NUnit" Version="4.6.1" />
+    <PackageVersion Include="xunit.v3" Version="4.0.1" />
+    <PackageVersion Include="Fody" Version="6.9.3" />
+    <PackageVersion Include="FodyHelpers" Version="6.9.3" />
+    <PackageVersion Include="FodyPackaging" Version="6.9.3" />
     <!-- the TUnit metapackage is not used since it brings in a Mono.Cecil that conflicts with the Cecil used by Fody -->
     <PackageVersion Include="TUnit.Core" Version="1.69.0" />
     <PackageVersion Include="TUnit.Assertions" Version="1.69.0" />
