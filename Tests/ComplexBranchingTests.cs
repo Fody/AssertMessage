@@ -1,13 +1,13 @@
 ﻿public class ComplexBranchingTests :
     IntegrationTestsBase
 {
-    [Fact]
+    [Test]
     public void TestMethod1()
     {
         CallTestMethod();
     }
 
-    [Fact]
+    [Test]
     public void TestMethod2()
     {
         CallTestMethod();

@@ -1,95 +1,95 @@
 ﻿public class NunitTests : IntegrationTestsBase
 {
-    [Fact]
-    public void StringContains_should_have_message()
+    [Test]
+    public async Task StringContains_should_have_message()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("StringAssert.Contains(\"test\", actual);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("StringAssert.Contains(\"test\", actual);");
     }
 
-    [Fact]
-    public void AreEqual_should_have_message_for_object()
+    [Test]
+    public async Task AreEqual_should_have_message_for_object()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.AreEqual(expected, actual);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.AreEqual(expected, actual);");
     }
 
-    [Fact]
-    public void AreEqual_should_have_message_for_int()
+    [Test]
+    public async Task AreEqual_should_have_message_for_int()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.AreEqual(expected, actual);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.AreEqual(expected, actual);");
     }
 
-    [Fact]
-    public void AreNotEqual_should_have_message()
+    [Test]
+    public async Task AreNotEqual_should_have_message()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.AreNotEqual(expected, actual);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.AreNotEqual(expected, actual);");
     }
 
-    [Fact]
-    public void AreEqual_should_have_message_original_message()
+    [Test]
+    public async Task AreEqual_should_have_message_original_message()
     {
         var message = CallTestMethod();
-        Assert.Contains("original_message", message);
-        Assert.DoesNotContain("Assert.AreEqual(", message);
+        await Assert.That(message).Contains("original_message");
+        await Assert.That(message).DoesNotContain("Assert.AreEqual(");
     }
 
-    [Fact]
-    public void AreEqual_should_have_message_original_formatted_message()
+    [Test]
+    public async Task AreEqual_should_have_message_original_formatted_message()
     {
         var message = CallTestMethod();
-        Assert.Contains("original_message", message);
-        Assert.DoesNotContain("Assert.AreEqual(", message);
+        await Assert.That(message).Contains("original_message");
+        await Assert.That(message).DoesNotContain("Assert.AreEqual(");
     }
 
-    [Fact]
-    public void Contains_should_have_message()
+    [Test]
+    public async Task Contains_should_have_message()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.Contains(expected, collection);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.Contains(expected, collection);");
     }
 
-    [Fact]
-    public void IsTrue_should_have_message()
+    [Test]
+    public async Task IsTrue_should_have_message()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.IsTrue(actual);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.IsTrue(actual);");
     }
 
-    [Fact]
-    public void False_should_have_message()
+    [Test]
+    public async Task False_should_have_message()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.False(actual);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.False(actual);");
     }
 
-    [Fact]
-    public void IsEmpty_should_have_message_for_collection()
+    [Test]
+    public async Task IsEmpty_should_have_message_for_collection()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.IsEmpty(actual);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.IsEmpty(actual);");
     }
 
-    [Fact]
-    public void IsInstanceOf_should_have_message()
+    [Test]
+    public async Task IsInstanceOf_should_have_message()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.IsInstanceOf<int>(actual);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.IsInstanceOf<int>(actual);");
     }
 
-    [Fact]
-    public void Throws_should_have_message()
+    [Test]
+    public async Task Throws_should_have_message()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.Throws<Exception>(action);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.Throws<Exception>(action);");
     }
 
-    [Fact]
-    public void Fail_should_have_message()
+    [Test]
+    public async Task Fail_should_have_message()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.Fail();", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.Fail();");
     }
 }

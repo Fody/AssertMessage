@@ -1,0 +1,24 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageVersion Include="System.Net.Http" Version="4.3.4" />
+    <PackageVersion Include="System.Text.RegularExpressions" Version="4.3.1" />
+    <!-- pin patched versions of vulnerable transitive dependencies -->
+    <PackageVersion Include="System.Private.Uri" Version="4.3.2" />
+    <!-- the assertion frameworks are referenced by AssemblyToProcess because the weaver rewrites their assertions -->
+    <PackageVersion Include="MSTest.TestFramework" Version="3.2.0" />
+    <PackageVersion Include="NUnit" Version="3.14.0" />
+    <PackageVersion Include="xunit" Version="2.6.4" />
+    <PackageVersion Include="Fody" Version="6.8.0" />
+    <PackageVersion Include="FodyHelpers" Version="6.8.0" />
+    <PackageVersion Include="FodyPackaging" Version="6.8.0" />
+    <!-- the TUnit metapackage is not used since it brings in a Mono.Cecil that conflicts with the Cecil used by Fody -->
+    <PackageVersion Include="TUnit.Core" Version="1.69.0" />
+    <PackageVersion Include="TUnit.Assertions" Version="1.69.0" />
+    <PackageVersion Include="TUnit.Engine" Version="1.69.0" />
+  </ItemGroup>
+</Project>

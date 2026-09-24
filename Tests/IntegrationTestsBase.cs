@@ -3,7 +3,7 @@ using Fody;
 
 public abstract class IntegrationTestsBase
 {
-    static TestResult testResult;
+    static Fody.TestResult testResult;
 
     static IntegrationTestsBase()
     {
@@ -20,7 +20,10 @@ public abstract class IntegrationTestsBase
         var type = testResult.Assembly.GetType(name);
         var test = Activator.CreateInstance(type);
         var method = test.GetType().GetMethod(memberName);
-        Assert.NotNull(method);
+        if (method is null)
+        {
+            throw new($"Method {memberName} not found on {name}");
+        }
 
         return (string) method.Invoke(test, Array.Empty<object>());
     }

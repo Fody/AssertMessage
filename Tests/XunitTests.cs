@@ -1,17 +1,17 @@
 ﻿public class XunitTests :
     IntegrationTestsBase
 {
-    [Fact]
-    public void True_should_have_message()
+    [Test]
+    public async Task True_should_have_message()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.True(actual);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.True(actual);");
     }
 
-    [Fact]
-    public void False_should_have_message()
+    [Test]
+    public async Task False_should_have_message()
     {
         var assertionMessage = CallTestMethod();
-        Assert.Contains("Assert.False(actual);", assertionMessage);
+        await Assert.That(assertionMessage).Contains("Assert.False(actual);");
     }
 }
