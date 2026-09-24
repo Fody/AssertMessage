@@ -12,16 +12,27 @@ public class ModuleWeaver :
 
     List<IProcessor> processors;
 
+    List<IChainProcessor> allChainProcessors;
+
+    List<IChainProcessor> chainProcessors;
+
     public ModuleWeaver()
     {
         var sourceCodeProvider = new SourceCodeProvider();
         sequencePointExtrator = new SequencePointExtrator(sourceCodeProvider);
         processors = new();
-        allProcessors = GetType()
+        chainProcessors = new();
+        allProcessors = CreateInstances<IProcessor>();
+        allChainProcessors = CreateInstances<IChainProcessor>();
+    }
+
+    List<T> CreateInstances<T>()
+    {
+        return GetType()
             .Assembly
             .GetTypes()
-            .Where(x => typeof(IProcessor).IsAssignableFrom(x) && !x.IsAbstract)
-            .Select(x => (IProcessor)x.GetConstructor(new Type[0]).Invoke(Array.Empty<object>()))
+            .Where(_ => typeof(T).IsAssignableFrom(_) && !_.IsAbstract && !_.IsInterface)
+            .Select(_ => (T) _.GetConstructor(Type.EmptyTypes).Invoke(Array.Empty<object>()))
             .ToList();
     }
 
@@ -40,11 +51,12 @@ public class ModuleWeaver :
     void SelectActiveProcessors()
     {
         processors = allProcessors.Where(_ => _.IsValidForModule(ModuleDefinition)).ToList();
+        chainProcessors = allChainProcessors.Where(_ => _.IsValidForModule(ModuleDefinition)).ToList();
     }
 
     void AnalyzeTypes()
     {
-        if (processors.Count == 0)
+        if (processors.Count == 0 && chainProcessors.Count == 0)
         {
             return;
         }
@@ -88,7 +100,7 @@ public class ModuleWeaver :
         method.Body.OptimizeMacros();
     }
 
-    List<InstructionToInsert> GetInstructionsToInsert(ICollection<Instruction> instructions, MethodDefinition method)
+    List<InstructionToInsert> GetInstructionsToInsert(IList<Instruction> instructions, MethodDefinition method)
     {
         var index = 0;
         var toAdd = new List<InstructionToInsert>();
@@ -96,12 +108,30 @@ public class ModuleWeaver :
 
         var branchTargetFixups = new Dictionary<Instruction, Instruction>();
 
-        foreach (var ins in instructions)
+        for (var originalIndex = 0; originalIndex < instructions.Count; originalIndex++)
         {
+            var ins = instructions[originalIndex];
             lastSequencePoint = method.DebugInformation.GetSequencePoint(ins) ?? lastSequencePoint;
 
             var methodReference = ins.Operand as MethodReference;
-            if (IsValidInstruction(ins, methodReference))
+            var chainProcessor = chainProcessors.FirstOrDefault(_ => _.IsChainEnd(method, originalIndex));
+            if (chainProcessor != null)
+            {
+                var source = sequencePointExtrator.GetSourceCode(lastSequencePoint);
+                var first = true;
+                foreach (var newInstruction in chainProcessor.GetMessageInstructions(ModuleDefinition, ins, source))
+                {
+                    toAdd.Add(new(index, newInstruction));
+                    if (first)
+                    {
+                        branchTargetFixups[ins] = newInstruction;
+                        first = false;
+                    }
+
+                    index++;
+                }
+            }
+            else if (IsValidInstruction(ins, methodReference))
             {
                 var processor = processors.FirstOrDefault(_ => _.IsValidForMethod(methodReference));
                 var newMethod = processor?.GetAssertionMethodWithMessage(methodReference);

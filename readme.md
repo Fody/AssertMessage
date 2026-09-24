@@ -21,6 +21,7 @@ Supported frameworks:
  * Nunit
  * Mstest
  * Xunit
+ * TUnit
 
 
 ### NuGet installation
@@ -70,6 +71,25 @@ public void CustomerTest()
     Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money, "Assert.AreEqual(expectedCustomer.Money, actualCustomer.Money);");
 }
 ```
+
+
+### TUnit
+
+TUnit assertions have no message overloads. Instead the message is applied with `.Because(...)` to the end of an awaited `Assert.That(...)` chain. Chains that already call `.Because(...)` are left alone.
+
+Your code:
+
+```csharp
+await Assert.That(actual).IsGreaterThan(0).And.IsEqualTo(expected);
+```
+
+What gets compiled:
+
+```csharp
+await Assert.That(actual).IsGreaterThan(0).And.IsEqualTo(expected).Because("await Assert.That(actual).IsGreaterThan(0).And.IsEqualTo(expected);");
+```
+
+Only chains that are awaited in the same statement as the `Assert.That(...)` call are supported. An assertion stored in a variable and awaited later is not changed.
 
 
 ### Pdb files

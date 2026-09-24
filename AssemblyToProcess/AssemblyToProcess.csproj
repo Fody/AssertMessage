@@ -6,6 +6,10 @@
     <IsTestProject>false</IsTestProject>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <!-- avoid TUnit global usings and generated code clashing with the other frameworks -->
+    <TUnitImplicitUsings>false</TUnitImplicitUsings>
+    <TUnitAssertionsImplicitUsings>false</TUnitAssertionsImplicitUsings>
+    <EnableTUnitSourceGeneration>false</EnableTUnitSourceGeneration>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" />
@@ -14,5 +18,7 @@
     <PackageReference Include="MSTest.TestFramework" />
     <PackageReference Include="NUnit" />
     <PackageReference Include="xunit" />
+    <PackageReference Include="TUnit.Core" />
+    <PackageReference Include="TUnit.Assertions" />
   </ItemGroup>
 </Project>

@@ -14,7 +14,17 @@ public abstract class IntegrationTestsBase
             ignoreCodes: new List<string> {"0x80131869"});
     }
 
+    protected async Task<string> CallTestMethodAsync([CallerMemberName] string memberName = "")
+    {
+        return await (Task<string>) Invoke(memberName);
+    }
+
     protected string CallTestMethod([CallerMemberName] string memberName = "")
+    {
+        return (string) Invoke(memberName);
+    }
+
+    object Invoke(string memberName)
     {
         var name = GetType().Name + "Target";
         var type = testResult.Assembly.GetType(name);
@@ -25,6 +35,6 @@ public abstract class IntegrationTestsBase
             throw new($"Method {memberName} not found on {name}");
         }
 
-        return (string) method.Invoke(test, Array.Empty<object>());
+        return method.Invoke(test, Array.Empty<object>());
     }
 }
