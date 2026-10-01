@@ -175,7 +175,7 @@ public class NunitTestsTarget
 
     public string Throws_should_have_message()
     {
-        var action = new TestDelegate(() => { });
+        var action = new Action(() => { });
 
         try
         {

@@ -17,4 +17,9 @@
     <ProjectReference Include="..\AssertMessage.Fody\AssertMessage.Fody.csproj" />
     <PackageReference Include="Microsoft.CSharp" />
   </ItemGroup>
+  <Target Name="RemoveMSTestUsing" BeforeTargets="GenerateGlobalUsings">
+    <ItemGroup>
+      <Using Remove="Microsoft.VisualStudio.TestTools.UnitTesting" />
+    </ItemGroup>
+  </Target>
 </Project>

@@ -17,8 +17,14 @@
     <PackageReference Include="System.Text.RegularExpressions" />
     <PackageReference Include="MSTest.TestFramework" />
     <PackageReference Include="NUnit" />
-    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.v3.extensibility.core" />
+    <PackageReference Include="xunit.v3.assert" />
     <PackageReference Include="TUnit.Core" />
     <PackageReference Include="TUnit.Assertions" />
   </ItemGroup>
+  <Target Name="RemoveMSTestUsing" BeforeTargets="GenerateGlobalUsings">
+    <ItemGroup>
+      <Using Remove="Microsoft.VisualStudio.TestTools.UnitTesting" />
+    </ItemGroup>
+  </Target>
 </Project>
