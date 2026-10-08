@@ -10,7 +10,7 @@
     <!-- pin patched versions of vulnerable transitive dependencies -->
     <PackageVersion Include="System.Private.Uri" Version="4.3.2" />
     <!-- the assertion frameworks are referenced by AssemblyToProcess because the weaver rewrites their assertions -->
-    <PackageVersion Include="MSTest.TestFramework" Version="4.4.1" />
+    <PackageVersion Include="MSTest.TestFramework" Version="4.5.1" />
     <PackageVersion Include="NUnit" Version="5.0.0" />
     <PackageVersion Include="xunit.v3" Version="4.0.1" />
     <PackageVersion Include="xunit.v3.extensibility.core" Version="4.0.1" />
