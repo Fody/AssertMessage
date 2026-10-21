@@ -57,7 +57,8 @@ public class MstestTestsTarget
 
         try
         {
-            Assert.AreEqual(expected, actual, "{0}_{1}", "original", "message");
+            // MSTest 4 dropped the format overload; extra arguments would bind to the caller expression parameters
+            Assert.AreEqual(expected, actual, $"{"original"}_{"message"}");
         }
         catch (Exception exception)
         {

@@ -43,6 +43,28 @@ public abstract class ProcessorBase : IProcessor
         return newMethod;
     }
 
+    public virtual int GetOptionalMessageIndex(MethodReference methodReference)
+    {
+        if (!IsThisFramework(methodReference) || !IsAssertMethod(methodReference))
+        {
+            return -1;
+        }
+
+        var parameters = methodReference.Resolve().Parameters;
+        for (var i = 0; i < parameters.Count; i++)
+        {
+            var parameter = parameters[i];
+            if (parameter.Name == "message" &&
+                parameter.IsOptional &&
+                parameter.ParameterType.FullName == "System.String")
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     protected virtual bool IsAssertMethod(MethodReference methodReference)
     {
         var resolved = methodReference.Resolve();

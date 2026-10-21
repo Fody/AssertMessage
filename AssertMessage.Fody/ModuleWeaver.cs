@@ -148,6 +148,10 @@ public class ModuleWeaver :
                         index++;
                     }
                 }
+                else
+                {
+                    ReplaceDefaultMessage(instructions, originalIndex, methodReference, lastSequencePoint);
+                }
             }
 
             index++;
@@ -180,6 +184,45 @@ public class ModuleWeaver :
         }
 
         return toAdd;
+    }
+
+    /// <summary>
+    /// The arguments after the message are [CallerArgumentExpression] strings, so the compiler loads each with ldstr
+    /// right before the call. Only a message left at its default "" is replaced; one the author wrote is kept.
+    /// </summary>
+    void ReplaceDefaultMessage(IList<Instruction> instructions, int callIndex, MethodReference methodReference, SequencePoint lastSequencePoint)
+    {
+        var messageIndex = processors
+            .Select(_ => _.GetOptionalMessageIndex(methodReference))
+            .DefaultIfEmpty(-1)
+            .Max();
+        if (messageIndex < 0)
+        {
+            return;
+        }
+
+        var trailing = methodReference.Parameters.Count - 1 - messageIndex;
+        var messageLoadIndex = callIndex - 1 - trailing;
+        if (messageLoadIndex < 0)
+        {
+            return;
+        }
+
+        for (var i = messageLoadIndex; i < callIndex; i++)
+        {
+            if (instructions[i].OpCode != OpCodes.Ldstr)
+            {
+                return;
+            }
+        }
+
+        var messageLoad = instructions[messageLoadIndex];
+        if ((string) messageLoad.Operand != "")
+        {
+            return;
+        }
+
+        messageLoad.Operand = sequencePointExtrator.GetSourceCode(lastSequencePoint);
     }
 
     InstructionToInsert GenerateNewCode(int index, SequencePoint lastSequencePoint, Instruction ins, MethodReference newMethod)

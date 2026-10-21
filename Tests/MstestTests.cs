@@ -12,7 +12,8 @@
     {
         var message = CallTestMethod();
         await Assert.That(message).Contains("original_message");
-        await Assert.That(message).DoesNotContain("Assert.AreEqual(");
+        // MSTest 4 appends the call expression itself, without the semicolon the woven source text has
+        await Assert.That(message).DoesNotContain("Assert.AreEqual(expected, actual);");
     }
 
     [Test]
@@ -41,7 +42,7 @@
     {
         var message = CallTestMethod();
         await Assert.That(message).Contains("original_message");
-        await Assert.That(message).DoesNotContain("Assert.AreEqual(");
+        await Assert.That(message).DoesNotContain("Assert.AreEqual(expected, actual);");
     }
 
     [Test]
